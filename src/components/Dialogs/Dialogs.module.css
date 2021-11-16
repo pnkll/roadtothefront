@@ -1,0 +1,26 @@
+.dialogs{
+display: grid;
+/* grid-template-areas: "d m"; */
+grid-template-columns: 200px auto;
+}
+
+.dialogsItems{
+/* grid-area: d; */
+padding-left: 20px;
+}
+
+.dialogsItems .active{
+
+}
+
+.dialogs .dialog{
+
+}
+
+.messages{
+/* grid-area: m; */
+}
+
+.messages .message{
+
+}
