@@ -9,18 +9,18 @@ grid-template-columns: 200px auto;
 padding-left: 20px;
 }
 
-.dialogsItems .active{
+/* .dialogsItems .active{
 
-}
+} */
 
 .dialogs .dialog{
-
+text-decoration: none;
 }
 
-.messages{
-/* grid-area: m; */
-}
+/* .messages{
 
-.messages .message{
+} */
 
-}
+/* .messages .message{
+
+} */
