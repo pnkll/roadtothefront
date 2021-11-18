@@ -18,9 +18,11 @@ let state = {
       { id: 4, name: 'name4', image: 'https://avatars.mds.yandex.net/get-zen_doc/1584893/pub_5e938aee2df22c6338f58187_5e9392261fba7924e8ffee20/scale_1200'}
     ],
     messages: [
-      { message: 'First message on this dialog', userid: 'me'},
-      { message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, culpa!' },
-      { message: 'Lorem ipsum dolor sit amet consectetur adipisic.' }
+      { userid: 'me', image: 'https://www.seekpng.com/png/detail/59-593478_mr-krabs-mr-krabs-png.png', message: 'First message on this dialog'},
+      { image: 'https://deti-online.com/img/spanchbob-color.jpg', message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, culpa!'},
+      { image: 'https://deti-online.com/img/spanchbob-color.jpg', message: 'Lorem ipsum dolor sit amet consectetur adipisic.'},
+      { userid: 'me', image: 'https://www.seekpng.com/png/detail/59-593478_mr-krabs-mr-krabs-png.png', message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem laboriosam dolore velit rerum soluta deserunt nisi, ipsa architecto id exercitationem.'},
+      { image: 'https://deti-online.com/img/spanchbob-color.jpg', message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem laboriosam dolore velit rerum soluta deserunt nisi.'}
     ],
   },
   newsPage: {

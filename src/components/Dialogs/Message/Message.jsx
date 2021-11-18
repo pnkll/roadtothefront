@@ -1,9 +1,11 @@
 import classes from './Message.module.css'
 
+
+
 function Message(props) {
-props.class == classes.myMessage
+  
   return (
-    <div className={props.class}>{props.text}</div>
+    <div className={classes.message}><img src={props.avatar}/>{props.text}</div>
   )
 }
 

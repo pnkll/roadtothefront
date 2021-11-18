@@ -4,6 +4,13 @@ display: grid;
 grid-template-columns: 200px auto;
 }
 
+.myMessage{
+    padding-left: 200px;
+}
+
+.message{
+    color: orange;
+}
 
 
 /* .dialogsItems .active{

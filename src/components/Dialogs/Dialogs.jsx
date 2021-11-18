@@ -11,11 +11,10 @@ function Dialogs(props) {
   // props.messages.map(m => (<Message text={m.message} />))
   props.messages.map(m => {
     if (m.userid == 'me'){
-      var a = classes.myMessage
-  return (<Message text={m.message} class={a}/>)
+  return (<div className={classes.myMessage}><Message avatar={m.image} text={m.message}/></div>)
   }
   else{
-    return (<Message text={m.message} class={classes.message}/>)
+    return (<div className={classes.message}><Message avatar={m.image} text={m.message}/></div>)
   }})
 
   let dialogsElems =

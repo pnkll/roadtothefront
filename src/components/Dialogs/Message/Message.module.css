@@ -1,6 +1,5 @@
-.message{
-    color:seagreen;
-}
-.message .myMessage{
-    color: purple;
-}
+.message img{
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    }
