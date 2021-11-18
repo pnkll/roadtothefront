@@ -1,12 +1,16 @@
 import classes from './Profile.module.css'
 import MyPosts from './My posts/MyPosts'
 import ProfileInfo from './ProfileInfo/ProfileInfo'
+import Post from './My posts/Post/Post'
 
-function Profile() {
+function Profile(props) {
+
+  
+
   return (
     <div className={classes.content}>
-      <ProfileInfo picture='https://phonoteka.org/uploads/posts/2021-05/1621015512_14-phonoteka_org-p-fon-dlya-akvariuma-bikini-bottom-26.jpg' avatar='https://www.seekpng.com/png/detail/59-593478_mr-krabs-mr-krabs-png.png' />
-      <MyPosts />
+      <ProfileInfo picture={props.profiles[0].background} avatar={props.profiles[0].avatar} />
+      <MyPosts posts={props.posts}/>
     </div>
   )
 }

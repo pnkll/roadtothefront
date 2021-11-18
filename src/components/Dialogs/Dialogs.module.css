@@ -4,18 +4,13 @@ display: grid;
 grid-template-columns: 200px auto;
 }
 
-.dialogsItems{
-/* grid-area: d; */
-padding-left: 20px;
-}
+
 
 /* .dialogsItems .active{
 
 } */
 
-.dialogs .dialog{
-text-decoration: none;
-}
+
 
 /* .messages{
 
