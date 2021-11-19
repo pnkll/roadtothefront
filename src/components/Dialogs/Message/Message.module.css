@@ -3,3 +3,8 @@
     height: 30px;
     border-radius: 15px;
     }
+
+    .message{
+        border: 1px solid green;
+        /* margin-left: auto; */
+    }

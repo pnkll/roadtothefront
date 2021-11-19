@@ -4,12 +4,9 @@ import ProfileInfo from './ProfileInfo/ProfileInfo'
 import Post from './My posts/Post/Post'
 
 function Profile(props) {
-
-  
-
   return (
     <div className={classes.content}>
-      <ProfileInfo picture={props.profiles[0].background} avatar={props.profiles[0].avatar} />
+      <ProfileInfo picture={props.profiles.background} avatar={props.profiles[0].avatar} />
       <MyPosts posts={props.posts}/>
     </div>
   )

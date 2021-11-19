@@ -5,7 +5,10 @@ grid-template-columns: 200px auto;
 }
 
 .myMessage{
-    padding-left: 200px;
+    display: block;
+    margin: 0 0 0 auto;
+    max-width: 500px;
+
 }
 
 .message{
@@ -19,9 +22,10 @@ grid-template-columns: 200px auto;
 
 
 
-/* .messages{
-
-} */
+.messages{
+border: 1px solid black;
+padding: 20px;
+}
 
 /* .messages .message{
 

@@ -1,0 +1,11 @@
+.friends{
+    border: 1px solid snow;
+    text-align: right;
+    padding: 3px;
+    
+}
+.container{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
