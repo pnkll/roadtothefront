@@ -7,7 +7,7 @@ function Profile(props) {
   return (
     <div className={classes.content}>
       <ProfileInfo picture={props.profiles.background} avatar={props.profiles[0].avatar} />
-      <MyPosts posts={props.posts}/>
+      <MyPosts posts={props.posts} addPost={props.addPost}/>
     </div>
   )
 }

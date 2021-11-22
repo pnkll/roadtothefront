@@ -1,8 +1,8 @@
 let state = {
   profilePage: {
     posts: [
-      { message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', likesCount: '13', avatar: 'https://yt3.ggpht.com/ytc/AKedOLR2ToVUrFKMgbZiOAtOZvObNAy_9tpiRzm_5tLX=s900-c-k-c0x00ffffff-no-rj' },
-      { message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, tempore culpa eos fuga reprehenderit modi facere ipsum! Deleniti, odit magni?', likesCount: '27', avatar: 'https://deti-online.com/img/spanchbob-color.jpg' }
+      { id: 1, message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', likesCount: '13', avatar: 'https://yt3.ggpht.com/ytc/AKedOLR2ToVUrFKMgbZiOAtOZvObNAy_9tpiRzm_5tLX=s900-c-k-c0x00ffffff-no-rj' },
+      { id: 2, message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, tempore culpa eos fuga reprehenderit modi facere ipsum! Deleniti, odit magni?', likesCount: '27', avatar: 'https://deti-online.com/img/spanchbob-color.jpg' }
     ],
     profiles: [
       { background: 'https://phonoteka.org/uploads/posts/2021-05/1621015512_14-phonoteka_org-p-fon-dlya-akvariuma-bikini-bottom-26.jpg', avatar: 'https://www.seekpng.com/png/detail/59-593478_mr-krabs-mr-krabs-png.png' },
@@ -36,12 +36,21 @@ let state = {
   },
   sidebar: {
     users: [
-     { path: '001', id: 1, name: 'Sponge Bob', avatar: 'https://deti-online.com/img/spanchbob-color.jpg' },
-     { path: '002', id: 2, name: 'Pat Rick', avatar: 'https://proprikol.ru/wp-content/uploads/2020/11/kartinki-patrika-17.jpg' },
-     { path: '003', id: 3, name: 'Krusty Krab', avatar: 'https://www.seekpng.com/png/detail/59-593478_mr-krabs-mr-krabs-png.png' }
+      { path: '001', id: 1, name: 'Sponge Bob', avatar: 'https://deti-online.com/img/spanchbob-color.jpg' },
+      { path: '002', id: 2, name: 'Pat Rick', avatar: 'https://proprikol.ru/wp-content/uploads/2020/11/kartinki-patrika-17.jpg' },
+      { path: '003', id: 3, name: 'Krusty Krab', avatar: 'https://www.seekpng.com/png/detail/59-593478_mr-krabs-mr-krabs-png.png' }
     ]
   }
 
+}
+
+export let addPost = () => {
+  debugger;
+  let newPost = {
+    id: 3, message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', likesCount: '0', avatar: 'https://proprikol.ru/wp-content/uploads/2020/11/kartinki-patrika-17.jpg' 
+  }
+
+  state.profilePage.posts.push(newPost)
 }
 
 export default state

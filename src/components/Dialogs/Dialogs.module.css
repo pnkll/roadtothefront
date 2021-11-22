@@ -25,6 +25,7 @@ grid-template-columns: 200px auto;
 .messages{
 border: 1px solid black;
 padding: 20px;
+background-color:cornflowerblue;
 }
 
 /* .messages .message{

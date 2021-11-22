@@ -7,20 +7,19 @@ import Dialogs from './components/Dialogs/Dialogs';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
-import { BrowserRouter } from 'react-router-dom';
 import { Route, Routes } from 'react-router';
 
 
 function App(props) {
 
   return (
-    <BrowserRouter>
+    
       <div className='app-wrapper'>
         <Header />
         <Nav users={props.state.sidebar.users} name={props.state.sidebar.name} avatar={props.state.sidebar.avatar}/>
         <div className='app-wrapper-content'>
           <Routes>
-            <Route path='/profile/me' element={<Profile posts={props.state.profilePage.posts} profiles={props.state.profilePage.profiles} />} />
+            <Route path='/profile/me' element={<Profile posts={props.state.profilePage.posts} profiles={props.state.profilePage.profiles} addPost={props.addPost}/>} />
             <Route path='/dialogs/*' element={<Dialogs messages={props.state.dialogsPage.messages} dialogs={props.state.dialogsPage.dialogs} avatar={props.state.dialogsPage.avatars}/>} />
             <Route path='/news' element={<News />} />
             <Route path='/music' element={<Music />} />
@@ -29,7 +28,6 @@ function App(props) {
           </Routes>
         </div>
       </div>
-    </BrowserRouter>
   );
 }
 
