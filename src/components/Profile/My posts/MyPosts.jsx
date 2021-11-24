@@ -8,13 +8,19 @@ function MyPosts(props) {
 
     let addPost = () => {
         let text = newPostElem.current.value;
-        props.addPost(text)
+        props.addPost(text);
+        newPostElem.current.value = ''
+    }
+
+    let updatePostText = ()=> {
+        let newText = newPostElem.current.value;
+        props.updatePostText(newText);
     }
 
     return (
         <div className={classes.posts}>
             My posts
-            <div><textarea ref={newPostElem}></textarea></div>
+            <div><textarea onChange={updatePostText} ref={newPostElem} value={props.postText} /></div>
             <button onClick={addPost}>Add post</button>
             {postElems}
         </div>
