@@ -1,4 +1,8 @@
-import {rerenderEntireTree} from '../render';
+// import { rerenderEntireTree } from '../render';
+
+let rerenderEntireTree = () => {
+ 
+}
 
 let state = {
   profilePage: {
@@ -27,6 +31,7 @@ let state = {
       { userid: 'me', image: 'https://www.seekpng.com/png/detail/59-593478_mr-krabs-mr-krabs-png.png', message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem laboriosam dolore velit rerum soluta deserunt nisi, ipsa architecto id exercitationem.' },
       { image: 'https://deti-online.com/img/spanchbob-color.jpg', message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem laboriosam dolore velit rerum soluta deserunt nisi.' }
     ],
+    newMessageValue: 'Mes area'
   },
   newsPage: {
 
@@ -47,18 +52,40 @@ let state = {
 
 }
 
-export let addPost = (text) => {
+export let addPost = () => {
   let newPost = {
-    id: 3, message: text, likesCount: '0', avatar: 'https://proprikol.ru/wp-content/uploads/2020/11/kartinki-patrika-17.jpg'
+    id: 3, message: state.profilePage.newPostText, likesCount: '0', avatar: 'https://proprikol.ru/wp-content/uploads/2020/11/kartinki-patrika-17.jpg'
   }
 
   state.profilePage.posts.push(newPost)
+  state.profilePage.newPostText = ''
   rerenderEntireTree(state)
 }
 
 export let updatePostText = (newText) => {
   state.profilePage.newPostText = newText
-  rerenderEntireTree(state)
+  rerenderEntireTree()
 }
 
-export default state 
+export const addMessage = () => {
+  let newMessage = {
+    userid: 'me',
+    image: 'https://www.seekpng.com/png/detail/59-593478_mr-krabs-mr-krabs-png.png',
+    message: state.dialogsPage.newMessageValue
+  }
+  state.dialogsPage.messages.push(newMessage)
+  state.dialogsPage.newMessageValue = ''
+  rerenderEntireTree()
+  // subscribe()
+}
+
+export const updateMessageText = (newText) => {
+  state.dialogsPage.newMessageValue = newText;
+  rerenderEntireTree()
+}
+
+export const subscribe = (observer) => {
+  rerenderEntireTree = observer;
+}
+
+export default state

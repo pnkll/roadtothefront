@@ -7,25 +7,30 @@ import React from 'react';
 
 function Dialogs(props) {
 
-let newMessagesElem = React.createRef();
+  let newMessagesElem = React.createRef();
 
-let addMessage = () => {
-  let text = newMessagesElem.current.value;
-  alert(text)
-}
+  let addMessage = () => {
+    props.addMess()
+  }
+
+  let updateMessage = () =>{
+    let newText = newMessagesElem.current.value
+    props.updateMess(newText)
+  }
 
   let messagesElems =
 
-  props.messages.map(m => {
-    if (m.userid == 'me'){
-  return (<div className={classes.myMessage}><Message avatar={m.image} text={m.message}/></div>)
-  }
-  else{
-    return (<div className={classes.message}><Message avatar={m.image} text={m.message}/></div>)
-  }})
+    props.messages.map(m => {
+      if (m.userid == 'me') {
+        return (<div className={classes.myMessage}><Message avatar={m.image} text={m.message} /></div>)
+      }
+      else {
+        return (<div className={classes.message}><Message avatar={m.image} text={m.message} /></div>)
+      }
+    })
 
   let dialogsElems =
-  props.dialogs.map(d => (<DialogItem avatar={d.image} id={d.id} name={d.name} path={'/dialogs/' + d.id} />))
+    props.dialogs.map(d => (<DialogItem avatar={d.image} id={d.id} name={d.name} path={'/dialogs/' + d.id} />))
 
   return (
     <div className={classes.dialogs}>
@@ -34,7 +39,7 @@ let addMessage = () => {
       </div>
       <div className={classes.messages}>
         {messagesElems}
-        <textarea ref={newMessagesElem}></textarea>
+        <textarea ref={newMessagesElem} value={props.messAlt} onChange={updateMessage}></textarea>
         <button onClick={addMessage}>Add message</button>
       </div>
     </div>
