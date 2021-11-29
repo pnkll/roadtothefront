@@ -7,12 +7,13 @@ function MyPosts(props) {
     let postElems = props.posts.map(p => (<Post message={p.message} likesCount={p.likesCount} avatar={p.avatar} />));
 
     let addPost = () => {
-        props.addPost();
+        props.dispatch({type: 'ADD-POST'})
     }
 
     let updatePostText = () => {
         let newText = newPostElem.current.value;
-        props.updatePostText(newText);
+        // props.updatePostText(newText);
+        props.dispatch({type: 'UPDATE-POST-TEXT', newText: newText})
     }
 
     return (

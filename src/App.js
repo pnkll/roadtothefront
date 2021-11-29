@@ -19,8 +19,8 @@ function App(props) {
       <Nav users={props.state.sidebar.users} name={props.state.sidebar.name} avatar={props.state.sidebar.avatar} />
       <div className='app-wrapper-content'>
         <Routes>
-          <Route path='/profile/me' element={<Profile posts={props.state.profilePage.posts} profiles={props.state.profilePage.profiles} updatePostText={props.updatePostText} addPost={props.addPost} postText={props.state.profilePage.newPostText} />} />
-          <Route path='/dialogs/*' element={<Dialogs messAlt={props.state.dialogsPage.newMessageValue} updateMess={props.updateMess} addMess={props.addMess} messages={props.state.dialogsPage.messages} dialogs={props.state.dialogsPage.dialogs} avatar={props.state.dialogsPage.avatars} />} />
+          <Route path='/profile/me' element={<Profile dispatch={props.dispatch} posts={props.state.profilePage.posts} profiles={props.state.profilePage.profiles} postText={props.state.profilePage.newPostText} />} />
+          <Route path='/dialogs/*' element={<Dialogs dispatch={props.dispatch} messAlt={props.state.dialogsPage.newMessageValue} messages={props.state.dialogsPage.messages} dialogs={props.state.dialogsPage.dialogs} avatar={props.state.dialogsPage.avatars} />} />
           <Route path='/news' element={<News />} />
           <Route path='/music' element={<Music />} />
           <Route path='/settings' element={<Settings />} />

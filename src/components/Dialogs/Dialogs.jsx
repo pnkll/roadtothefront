@@ -10,16 +10,17 @@ function Dialogs(props) {
   let newMessagesElem = React.createRef();
 
   let addMessage = () => {
-    props.addMess()
+    // props.addMess()
+    props.dispatch({type: 'ADD-MESSAGE'})
   }
 
   let updateMessage = () =>{
     let newText = newMessagesElem.current.value
-    props.updateMess(newText)
+    // props.updateMess(newText)
+    props.dispatch({type: 'UPDATE-MESSAGE-TEXT', newText: newText})
   }
 
   let messagesElems =
-
     props.messages.map(m => {
       if (m.userid == 'me') {
         return (<div className={classes.myMessage}><Message avatar={m.image} text={m.message} /></div>)
