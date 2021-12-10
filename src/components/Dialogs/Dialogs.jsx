@@ -2,22 +2,22 @@ import classes from './Dialogs.module.css'
 import Message from './Message/Message'
 import DialogItem from './DialogItem/DialogItem';
 import React from 'react';
+import { addMessageActionCreator, updateMessageActionCreator } from '../../redux/dialogsReducer'
 
 
 
 function Dialogs(props) {
 
-  let newMessagesElem = React.createRef();
+  // let newMessagesElem = React.createRef(); - Можно и так, просто решил здесь сделать немного иначе чем на странице Profile в textarea для доб-ия поста
 
-  let addMessage = () => {
-    // props.addMess()
-    props.dispatch({type: 'ADD-MESSAGE'})
+  let onAddMessage = () => {
+    props.addMess()
   }
 
-  let updateMessage = () =>{
-    let newText = newMessagesElem.current.value
-    // props.updateMess(newText)
-    props.dispatch({type: 'UPDATE-MESSAGE-TEXT', newText: newText})
+
+  let onUpdateMessage = (elem) =>{
+    let newText = elem.target.value
+    props.updateMess(newText)
   }
 
   let messagesElems =
@@ -40,8 +40,8 @@ function Dialogs(props) {
       </div>
       <div className={classes.messages}>
         {messagesElems}
-        <textarea ref={newMessagesElem} value={props.messAlt} onChange={updateMessage}></textarea>
-        <button onClick={addMessage}>Add message</button>
+        <textarea value={props.dialogsPage.newMessageValue} onChange={onUpdateMessage}></textarea>
+        <button onClick={onAddMessage}>Add message</button>
       </div>
     </div>
 

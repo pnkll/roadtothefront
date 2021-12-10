@@ -1,13 +1,14 @@
 import classes from './Profile.module.css'
-import MyPosts from './My posts/MyPosts'
+import MyPostsContainer from './My posts/MyPostsContainer'
 import ProfileInfo from './ProfileInfo/ProfileInfo'
-import Post from './My posts/Post/Post'
+// import Post from './My posts/Post/Post'
 
 function Profile(props) {
+  let state = props.store.getState();
   return (
     <div className={classes.content}>
-      <ProfileInfo picture={props.profiles.background} avatar={props.profiles[0].avatar} />
-      <MyPosts dispatch={props.dispatch} posts={props.posts} postText={props.postText}/>
+      <ProfileInfo id={props.user.id} profilePage={state.profilePage} />
+      <MyPostsContainer store={props.store}/>
     </div>
   )
 }

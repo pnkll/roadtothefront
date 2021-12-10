@@ -8,23 +8,23 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import { Route, Routes } from 'react-router';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
+// import DialogsContainer from './components/Dialogs/DialogsContainer';
 
 
 function App(props) {
-
   return (
-
     <div className='app-wrapper'>
       <Header />
-      <Nav users={props.state.sidebar.users} name={props.state.sidebar.name} avatar={props.state.sidebar.avatar} />
+      <Nav sidebar={props.state.sidebar} />
       <div className='app-wrapper-content'>
         <Routes>
-          <Route path='/profile/me' element={<Profile dispatch={props.dispatch} posts={props.state.profilePage.posts} profiles={props.state.profilePage.profiles} postText={props.state.profilePage.newPostText} />} />
-          <Route path='/dialogs/*' element={<Dialogs dispatch={props.dispatch} messAlt={props.state.dialogsPage.newMessageValue} messages={props.state.dialogsPage.messages} dialogs={props.state.dialogsPage.dialogs} avatar={props.state.dialogsPage.avatars} />} />
+        <Route path='/profile/me' element={<Profile store={props.store} user={props.state.sidebar.users[0]}/>} />
+          <Route path='/dialogs/*' element={<DialogsContainer store={props.store} />} />
           <Route path='/news' element={<News />} />
           <Route path='/music' element={<Music />} />
           <Route path='/settings' element={<Settings />} />
-          <Route path='/profile/002' element={<Profile id={props.state.sidebar.users.id} posts={props.state.profilePage.posts} profiles={props.state.profilePage.profiles} />} />
+          <Route path='/profile/002' element={<Profile store={props.store} user={props.state.sidebar.users[1]}/>} />
         </Routes>
       </div>
     </div>

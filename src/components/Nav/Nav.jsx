@@ -2,7 +2,6 @@ import classes from './Nav.module.css'
 import {NavLink} from 'react-router-dom'
 import SidebarFriends from './SidebarFriends/SidebarFriends'
 
-// console.log(classes)
 
 function Nav(props){
     return (
@@ -13,7 +12,7 @@ function Nav(props){
         <div className={classes.item}><NavLink to='/music'>Music</NavLink></div>
         <div className={classes.item}><NavLink to='/settings'>Settings</NavLink></div>
         
-        <SidebarFriends users={props.users}/>
+        <SidebarFriends users={props.sidebar.users} />
       </nav>
     )
 }

@@ -1,112 +1,14 @@
-// import { rerenderEntireTree } from '../render';
-const store = {
-  _callSubscriber() {
-    console.log('State changed')
-  },
+import { combineReducers, createStore } from "redux";
+import profileReducer from "./profileReducer";
+import dialogsReducer from "./dialogsReducer";
+import sidebarReducer from "./sidebarReducer";
 
-  _state: {
-    profilePage: {
-      posts: [
-        { id: 1, message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', likesCount: '13', avatar: 'https://yt3.ggpht.com/ytc/AKedOLR2ToVUrFKMgbZiOAtOZvObNAy_9tpiRzm_5tLX=s900-c-k-c0x00ffffff-no-rj' },
-        { id: 2, message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, tempore culpa eos fuga reprehenderit modi facere ipsum! Deleniti, odit magni?', likesCount: '27', avatar: 'https://deti-online.com/img/spanchbob-color.jpg' }
-      ],
-      profiles: [
-        { background: 'https://phonoteka.org/uploads/posts/2021-05/1621015512_14-phonoteka_org-p-fon-dlya-akvariuma-bikini-bottom-26.jpg', avatar: 'https://www.seekpng.com/png/detail/59-593478_mr-krabs-mr-krabs-png.png' },
-        { background: 'https://vignette.wikia.nocookie.net/spongebob/images/c/c0/Squid_Noir_001.png/revision/latest?cb=20171110155649', avatar: 'https://all-t-shirts.ru/goods_images/ru110593II000eed5c5dc8999b359b5e0e6cd786bae4b.jpg' },
-        { background: 'https://i.imgflip.com/vu74f.jpg', avatar: 'https://deti-online.com/img/spanchbob-color.jpg' }
-      ],
-      newPostText: 'put it'
-    },
-    dialogsPage: {
-      dialogs: [
-        { id: 1, name: 'Jeka', image: 'https://www.seekpng.com/png/detail/59-593478_mr-krabs-mr-krabs-png.png' },
-        { id: 2, name: 'Pasha', image: 'https://deti-online.com/img/spanchbob-color.jpg' },
-        { id: 3, name: 'name3', image: 'https://proprikol.ru/wp-content/uploads/2020/11/kartinki-patrika-17.jpg' },
-        { id: 4, name: 'name4', image: 'https://avatars.mds.yandex.net/get-zen_doc/1584893/pub_5e938aee2df22c6338f58187_5e9392261fba7924e8ffee20/scale_1200' }
-      ],
-      messages: [
-        { userid: 'me', image: 'https://www.seekpng.com/png/detail/59-593478_mr-krabs-mr-krabs-png.png', message: 'First message on this dialog' },
-        { image: 'https://deti-online.com/img/spanchbob-color.jpg', message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, culpa!' },
-        { image: 'https://deti-online.com/img/spanchbob-color.jpg', message: 'Lorem ipsum dolor sit amet consectetur adipisic.' },
-        { userid: 'me', image: 'https://www.seekpng.com/png/detail/59-593478_mr-krabs-mr-krabs-png.png', message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem laboriosam dolore velit rerum soluta deserunt nisi, ipsa architecto id exercitationem.' },
-        { image: 'https://deti-online.com/img/spanchbob-color.jpg', message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem laboriosam dolore velit rerum soluta deserunt nisi.' }
-      ],
-      newMessageValue: 'Mes area'
-    },
-    newsPage: {
+const reducers = combineReducers({
+    profilePage: profileReducer,
+    dialogsPage: dialogsReducer,
+    sidebar: sidebarReducer
+})
 
-    },
-    musicPage: {
+const store = createStore(reducers)
 
-    },
-    settingsPage: {
-
-    },
-    sidebar: {
-      users: [
-        { path: '001', id: 1, name: 'Sponge Bob', avatar: 'https://deti-online.com/img/spanchbob-color.jpg' },
-        { path: '002', id: 2, name: 'Pat Rick', avatar: 'https://proprikol.ru/wp-content/uploads/2020/11/kartinki-patrika-17.jpg' },
-        { path: '003', id: 3, name: 'Krusty Krab', avatar: 'https://www.seekpng.com/png/detail/59-593478_mr-krabs-mr-krabs-png.png' }
-      ]
-    }
-
-  },
-
-  getState() {
-    return this._state
-  },
-
-  subscribe(observer) {
-    store._callSubscriber = observer;
-  },
-
-  dispatch(action) {
-    if (action.type === 'ADD-POST') {
-      let newPost = {
-        id: 3, message: this._state.profilePage.newPostText, likesCount: '0', avatar: 'https://proprikol.ru/wp-content/uploads/2020/11/kartinki-patrika-17.jpg'
-      }
-
-      this._state.profilePage.posts.push(newPost)
-      this._state.profilePage.newPostText = ''
-      store._callSubscriber(this._state)
-    }
-    else if (action.type === 'UPDATE-POST-TEXT') {
-      this._state.profilePage.newPostText = action.newText
-      store._callSubscriber(this._state)
-    }
-    else if (action.type === 'ADD-MESSAGE') {
-      let newMessage = {
-        userid: 'me',
-        image: 'https://www.seekpng.com/png/detail/59-593478_mr-krabs-mr-krabs-png.png',
-        message: this._state.dialogsPage.newMessageValue
-      }
-      this._state.dialogsPage.messages.push(newMessage)
-      this._state.dialogsPage.newMessageValue = ''
-      store._callSubscriber(this._state)
-    }
-    else if (action.type === 'UPDATE-MESSAGE-TEXT') {
-      this._state.dialogsPage.newMessageValue = action.newText;
-      store._callSubscriber(this._state)
-    }
-  },
-
-  // addMessage() {
-  //   let newMessage = {
-  //     userid: 'me',
-  //     image: 'https://www.seekpng.com/png/detail/59-593478_mr-krabs-mr-krabs-png.png',
-  //     message: this._state.dialogsPage.newMessageValue
-  //   }
-  //   this._state.dialogsPage.messages.push(newMessage)
-  //   this._state.dialogsPage.newMessageValue = ''
-  //   store._callSubscriber(this._state)
-  // },
-
-  // updateMessageText(newText) {
-  //   this._state.dialogsPage.newMessageValue = newText;
-  //   store._callSubscriber(this._state)
-  // }
-
-
-
-}
 export default store
