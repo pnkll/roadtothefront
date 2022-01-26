@@ -5,11 +5,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals'
 import store from './redux/store';
 import { BrowserRouter } from 'react-router-dom';
+// import DialogsContainer from './components/Dialogs/DialogsContainer';
 // import { addPost, updatePostText, addMessage, updateMessageText, subscribe } from './redux/store'
+
+
 
 
 let rerenderEntireTree = (state) => {
     console.log('state обновлен')
+    console.log(state)
     ReactDOM.render(
 
         <React.StrictMode>

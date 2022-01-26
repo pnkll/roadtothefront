@@ -8,6 +8,7 @@ function ProfileInfo(props) {
             <div><img src={props.profilePage.background}/>
             </div>
             <div className={classes.ava}><img src={props.profilePage.profiles[id].avatar}/></div>
+            <div className={classes.fullname}>{props.fullname}</div>
         </div>
     )
 }

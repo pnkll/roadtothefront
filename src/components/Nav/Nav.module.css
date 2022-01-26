@@ -4,20 +4,20 @@
     text-decoration: none;
   }
 
-.nav a{
+/* .nav a{
+
+} */
+
+/* a.active{
+  color: black;
+} */
+
+.item a{
   text-decoration: none;
   color: white;
 }
 
-a.active{
+.itemActive a{
+  text-decoration: none;
   color: black;
 }
-
-/* .item{
-  text-decoration: none;
-}
-
-.item a.active{
-  font-size: 20px;
-} */
-
