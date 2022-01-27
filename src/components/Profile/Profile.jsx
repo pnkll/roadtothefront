@@ -5,16 +5,16 @@ import { produceWithPatches } from 'immer';
 // import Post from './My posts/Post/Post'
 
 function Profile(props) {
-  let state = props.store.getState();
-  console.log(props);
-  return (
-    
-    <div className={classes.content}>
-      <div>Hello {props.response}</div>
-      <ProfileInfo id={props.user.id} profilePage={state.profilePage} fullname={props.fullname}/>
-      <MyPostsContainer store={props.store}/>
-    </div>
-  )
+  if (props.profilePage.user != null) {
+    return (
+
+      <div className={classes.content}>
+        <ProfileInfo user={props.profilePage.user} />
+        <MyPostsContainer store={props.store} />
+      </div>
+    )
+  }
+  else {return <div>Continues...</div>}
 }
 
 export default Profile

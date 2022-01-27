@@ -1,4 +1,5 @@
 import { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from "react-dom"
+import { act } from "react-dom/test-utils"
 
 const ADD_POST = 'ADD-POST'
 const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT'
@@ -14,7 +15,8 @@ const initialState = {
         { background: 'https://vignette.wikia.nocookie.net/spongebob/images/c/c0/Squid_Noir_001.png/revision/latest?cb=20171110155649', avatar: 'https://all-t-shirts.ru/goods_images/ru110593II000eed5c5dc8999b359b5e0e6cd786bae4b.jpg' },
         { background: 'https://i.imgflip.com/vu74f.jpg', avatar: 'https://deti-online.com/img/spanchbob-color.jpg' }
     ],
-    newPostText: 'put it'
+    newPostText: 'put it',
+    user: null
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -37,7 +39,7 @@ const profileReducer = (state = initialState, action) => {
         }
         case 'SET-USER': {
             return{
-                ...state, fullname: action.fullname
+                ...state, user: action.profile
             }
         }
         default:
@@ -53,8 +55,8 @@ export const updatePostTextActionCreator = (text) => {
     return { type: UPDATE_POST_TEXT, newText: text }
 }
 
-export const setUser = (name) => {
-    return {type: SET_USER, fullname: name}
+export const setUser = (profile) => {
+    return {type: SET_USER, profile}
 }
 
 export default profileReducer

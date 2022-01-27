@@ -20,7 +20,7 @@ function App(props) {
       <Nav sidebar={props.state.sidebar} />
       <div className='app-wrapper-content'>
         <Routes>
-        <Route path='/profile/me' element={<ProfileContainer store={props.store} user={props.state.sidebar.users[0]}/>} />
+        <Route path='/profile/me' element={<ProfileContainer store={props.store}/>} />
           <Route path='/dialogs/*' element={<DialogsContainer store={props.store} />} />
           <Route path='/news' element={<News />} />
           <Route path='/music' element={<Music />} />

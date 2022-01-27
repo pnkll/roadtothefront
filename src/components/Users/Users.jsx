@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import classes from './Users.module.css'
 
 let Users = (props) => {
@@ -10,20 +11,14 @@ let Users = (props) => {
         pages.push(i)
     }
 
-
-    // if (props.users.length === 0) {
-    //     header = 'Загрузка...'
-    //     but = ''
-    // }
-
     return (    
-        <div>{header}{
-            props.users.map(u => (
+        <div>{header} {
+           props.users.map(u => (
                 <div key={u.id} className={classes.users}>
                     <div className={classes.user}>
-                        <img src={u.photos.small != null
+                    <NavLink to={'profile/2'}><img src={u.photos.small != null
                             ? u.photos.small
-                            : "https://cdn1.ozone.ru/s3/multimedia-a/c1200/6064056070.jpg"} /><br />
+                            : "https://cdn1.ozone.ru/s3/multimedia-a/c1200/6064056070.jpg"} /></NavLink><br />
                         <div>
                             {u.followed
                                 ? <button className={classes.followed} onClick={() => { props.unfollow(u.id) }}>unfollow</button>
@@ -44,6 +39,7 @@ let Users = (props) => {
                         </div>
                     </div>
                 </div>))
+                
         }
             {/* {but} */}
             <div className={classes.btns}>

@@ -24,8 +24,6 @@ class UsersContainer extends React.Component {
                     this.props.toogleIsFetching(false)
                 })
         }
-
-        console.log(this)
     }
 
     componentWillUnmount() {
