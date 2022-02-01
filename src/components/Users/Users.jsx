@@ -10,13 +10,15 @@ let Users = (props) => {
     for (let i = 1; i <= Math.ceil(props.pageCount / props.pageSize); i++) {
         pages.push(i)
     }
-
+    // console.log(props);
+    // debugger
     return (    
+        
         <div>{header} {
            props.users.map(u => (
-                <div key={u.id} className={classes.users}>
+            <div key={u.id} className={classes.users}>
                     <div className={classes.user}>
-                    <NavLink to={'profile/2'}><img src={u.photos.small != null
+                    <NavLink to={`../profile/${u.id}`}><img src={u.photos.small != null
                             ? u.photos.small
                             : "https://cdn1.ozone.ru/s3/multimedia-a/c1200/6064056070.jpg"} /></NavLink><br />
                         <div>

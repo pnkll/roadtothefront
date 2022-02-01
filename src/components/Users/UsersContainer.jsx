@@ -11,12 +11,14 @@ class UsersContainer extends React.Component {
         super(props);
         this.onShowMore = () => {
             this.props.showMore()
+            
         }
 
     }
 
     componentDidMount() {
         if (this.props.users.length === 0) {
+            console.log(this.props)
             this.props.toogleIsFetching(true);
             axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
                 .then(response => {
