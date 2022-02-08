@@ -1,40 +1,42 @@
 import classes from './Profile.module.css'
-import MyPostsContainer from './My posts/MyPostsContainer'
+import MyPosts from './My posts/MyPosts'
 import ProfileInfo from './ProfileInfo/ProfileInfo'
 import { setUser } from '../../redux/profileReducer'
 import { useEffect, useReducer } from 'react'
+import { useLocation, useParams } from 'react-router'
 import * as axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
+import { current } from 'immer'
 // import Post from './My posts/Post/Post'
 
 function Profile(props) {
-  
-  const profile = useSelector(setUser)
-
   const dispatch = useDispatch()
 
-  const onSetUSer = (profile) => {
-    dispatch(setUser(profile))
-
-  }
-
-  useEffect(()=>{
-    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
-            .then(response => {
-              dispatch(setUser(response.data))
-                console.log(response.data)
-            })
-    
-  },[])
-
+  const profilePage = useSelector(state => state.profilePage)
+  const profile = useSelector(state => state.profilePage.user)
   
 
-  if (props.profile != null) {
+  const onSetUSer = (profile) =>{
+    dispatch(setUser(profile))
+  }
+
+  const params = useParams()
+  const currentUser = params.id  
+
+  useEffect(()=>{
+    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${currentUser}`)
+              .then(response => {
+                onSetUSer(response.data)
+              })
+  },[])
+
+  if (profile != null) {
+
     return (
 
       <div className={classes.content}>
-        <ProfileInfo user={props.profile} />
-        <MyPostsContainer store={props.store} />
+        <ProfileInfo user={profile} />
+        <MyPosts profilePage={profilePage} />
       </div>
     )
   }

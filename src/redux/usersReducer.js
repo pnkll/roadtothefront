@@ -1,4 +1,5 @@
 const SHOW_MORE = 'SHOW-MORE'
+
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SETUSERS = 'SETUSERS'
