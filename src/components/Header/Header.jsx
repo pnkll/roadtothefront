@@ -10,7 +10,6 @@ function Header(props) {
   const dispatch = useDispatch()
 
   const result = useSelector(state => state.auth.result)
-  console.log(result)
   useEffect(() => {
     axios.get('https://social-network.samuraijs.com/api/1.0/auth/me', { withCredentials: true })
       .then(response => {

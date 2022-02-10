@@ -19,3 +19,11 @@ export const sub = (userId) => {
 export const unSub = (userId) => {
     return instance.delete(`follow/${userId}`, {})
 }
+
+
+
+//ProfilePage
+
+export const setProfile = (currentUser) => {
+    return axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${currentUser}`)
+}

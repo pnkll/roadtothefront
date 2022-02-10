@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useLocation, useParams } from "react-router";
 import { NavLink } from "react-router-dom";
 import classes from './Users.module.css'
-import { setPage, toogleIsFetching, setUsers, follow, unfollow } from '../../redux/usersReducer'
+import { setPage, toogleIsFetching, setUsers, follow, unfollow, toogleOfButton } from '../../redux/usersReducer'
 import Preloader from "../default/Preloader/Preloader";
 import { getUsers, sub, unSub } from '../api/api'
 
@@ -15,6 +15,7 @@ let Users = (props) => {
     const currentPage = useSelector(state => state.usersPage.currentPage)
     const users = useSelector(state => state.usersPage.users)
     const isFetching = useSelector(state => state.usersPage.isFetching)
+    const button = useSelector(state => state.usersPage.button)
 
 
     const onSetPage = (pageNum) => {
@@ -67,11 +68,13 @@ let Users = (props) => {
                                         })
 
                                 }}>unfollow</button>
-                                : <button className={classes.followed} onClick={() => {
+                                : <button disabled = {button} className={classes.followed} onClick={() => {
+                                    dispatch(toogleOfButton(true))
                                     sub(u.id).then(response => {
                                         if (response.data.resultCode == 0) {
                                             dispatch(follow(u.id))
                                         }
+                                        dispatch(toogleOfButton(false))
                                     })
                                 }}>follow</button>}
                         </div>

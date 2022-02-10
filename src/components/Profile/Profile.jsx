@@ -1,13 +1,12 @@
 import classes from './Profile.module.css'
 import MyPosts from './My posts/MyPosts'
 import ProfileInfo from './ProfileInfo/ProfileInfo'
-import { setUser } from '../../redux/profileReducer'
+import { setUser, clear } from '../../redux/profileReducer'
 import { useEffect, useReducer } from 'react'
 import { useLocation, useParams } from 'react-router'
-import * as axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
-import { current } from 'immer'
-// import Post from './My posts/Post/Post'
+import { setProfile } from '../../components/api/api'
+import Preloader from '../default/Preloader/Preloader'
 
 function Profile(props) {
   const dispatch = useDispatch()
@@ -24,10 +23,11 @@ function Profile(props) {
   const currentUser = params.id  
 
   useEffect(()=>{
-    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${currentUser}`)
-              .then(response => {
+              setProfile(currentUser).then(response => {
                 onSetUSer(response.data)
               })
+
+              return () => {dispatch(clear())}
   },[])
 
   if (profile != null) {
@@ -40,7 +40,7 @@ function Profile(props) {
       </div>
     )
   }
-  else {return <div>Continues...</div>}
+  else {return <Preloader/>}
 }
 
 export default Profile

@@ -1,9 +1,7 @@
-import { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from "react-dom"
-import { act } from "react-dom/test-utils"
-
 const ADD_POST = 'ADD-POST'
 const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT'
 const SET_USER = 'SET-USER'
+const CLEAR_PROFILE_PAGE = 'CLEAR-PROFILE-PAGE'
 
 const initialState = {
     posts: [
@@ -21,7 +19,7 @@ const initialState = {
 
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'ADD-POST': {
+        case 'ADD-POST':
             let newPost = {
                 id: 3, message: state.newPostText, likesCount: '0', avatar: 'https://proprikol.ru/wp-content/uploads/2020/11/kartinki-patrika-17.jpg'
             }
@@ -29,19 +27,21 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 posts: [...state.posts, newPost],
                 newPostText: ''
+
             }
-        }
-        case 'UPDATE-POST-TEXT': {
-            return{
+        case 'UPDATE-POST-TEXT':
+            return {
                 ...state,
                 newPostText: action.newText
             }
-        }
-        case 'SET-USER': {
-            return{
+        case 'SET-USER': 
+            return {
                 ...state, user: action.profile
             }
-        }
+        case 'CLEAR-PROFILE-PAGE':
+            return {
+                ...state, user: null
+            }
         default:
             return state;
     }
@@ -56,7 +56,11 @@ export const updatePostText = (text) => {
 }
 
 export const setUser = (profile) => {
-    return {type: SET_USER, profile}
+    return { type: SET_USER, profile }
+}
+
+export const clear = () => {
+    return { type: CLEAR_PROFILE_PAGE }
 }
 
 export default profileReducer
