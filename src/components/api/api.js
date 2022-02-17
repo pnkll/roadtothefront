@@ -25,5 +25,11 @@ export const unSub = (userId) => {
 //ProfilePage
 
 export const setProfile = (currentUser) => {
-    return axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${currentUser}`)
+    return instance.get(`profile/${currentUser}`)
+}
+
+//Auth
+
+export const getAuth = () => {
+    return instance.get('auth/me')
 }

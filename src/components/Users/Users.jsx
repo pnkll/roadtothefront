@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useLocation, useParams } from "react-router";
 import { NavLink } from "react-router-dom";
 import classes from './Users.module.css'
-import { setPage, toogleIsFetching, setUsers, follow, unfollow, toogleOfButton } from '../../redux/usersReducer'
+import { follow, unfollow, toogleOfButton } from '../../redux/usersReducer'
 import Preloader from "../default/Preloader/Preloader";
-import { getUsers, sub, unSub } from '../api/api'
+import { sub, unSub } from '../api/api'
+import { followThunk, getUsersThunk, onSetPageThunk, unFollowThunk } from "../../redux/async/usersThunk";
 
 let Users = (props) => {
 
@@ -17,25 +17,9 @@ let Users = (props) => {
     const isFetching = useSelector(state => state.usersPage.isFetching)
     const button = useSelector(state => state.usersPage.button)
 
-
-    const onSetPage = (pageNum) => {
-        dispatch(setPage(pageNum))
-        dispatch(toogleIsFetching(true))
-        getUsers(pageNum, pageSize)
-            .then(response => {
-                dispatch(setUsers(response.data.items))
-                dispatch(toogleIsFetching(false))
-            })
-    }
-
     useEffect(() => {
         if (users.length === 0) {
-            toogleIsFetching(true);
-            getUsers(currentPage, pageSize)
-                .then(response => {
-                    dispatch(setUsers(response.data.items))
-                    dispatch(toogleIsFetching(false))
-                })
+            dispatch(getUsersThunk(currentPage, pageSize))
         }
     }, [])
 
@@ -59,23 +43,11 @@ let Users = (props) => {
                         <div>
                             {u.followed
                                 ? <button className={classes.followed} onClick={() => {
-                                    unSub(u.id)
-                                        .then(response => {
-                                            if (response.data.resultCode == 0) {
-
-                                                dispatch(unfollow(u.id))
-                                            }
-                                        })
+                                    dispatch(unFollowThunk(u.id))
 
                                 }}>unfollow</button>
                                 : <button disabled = {button} className={classes.followed} onClick={() => {
-                                    dispatch(toogleOfButton(true))
-                                    sub(u.id).then(response => {
-                                        if (response.data.resultCode == 0) {
-                                            dispatch(follow(u.id))
-                                        }
-                                        dispatch(toogleOfButton(false))
-                                    })
+                                    dispatch(followThunk(u.id))
                                 }}>follow</button>}
                         </div>
                     </div>
@@ -100,7 +72,7 @@ let Users = (props) => {
                 <div>{isFetching ? <Preloader /> : null}</div>
                 {pages.map(p => {
                     return <span onClick=
-                        {(e) => { onSetPage(p) }} className={currentPage === p
+                        {(e) => { dispatch(onSetPageThunk(p, pageSize)) }} className={currentPage === p
                             ? classes.selectedPage
                             : classes.page}>{p}</span>
                 })}

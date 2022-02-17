@@ -1,32 +1,23 @@
 import classes from './Profile.module.css'
 import MyPosts from './My posts/MyPosts'
 import ProfileInfo from './ProfileInfo/ProfileInfo'
-import { setUser, clear } from '../../redux/profileReducer'
-import { useEffect, useReducer } from 'react'
-import { useLocation, useParams } from 'react-router'
+import { clear } from '../../redux/profileReducer'
+import { useEffect} from 'react'
+import { useParams } from 'react-router'
 import { useSelector, useDispatch } from 'react-redux'
-import { setProfile } from '../../components/api/api'
 import Preloader from '../default/Preloader/Preloader'
+import { getProfile } from '../../redux/async/profileThunk'
 
 function Profile(props) {
   const dispatch = useDispatch()
 
   const profilePage = useSelector(state => state.profilePage)
   const profile = useSelector(state => state.profilePage.user)
-  
-
-  const onSetUSer = (profile) =>{
-    dispatch(setUser(profile))
-  }
-
   const params = useParams()
   const currentUser = params.id  
 
   useEffect(()=>{
-              setProfile(currentUser).then(response => {
-                onSetUSer(response.data)
-              })
-
+              dispatch(getProfile(currentUser))
               return () => {dispatch(clear())}
   },[])
 
