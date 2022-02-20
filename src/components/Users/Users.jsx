@@ -1,10 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import classes from './Users.module.css'
-import { follow, unfollow, toogleOfButton } from '../../redux/usersReducer'
+import classes from './Users.module.css';
 import Preloader from "../default/Preloader/Preloader";
-import { sub, unSub } from '../api/api'
 import { followThunk, getUsersThunk, onSetPageThunk, unFollowThunk } from "../../redux/async/usersThunk";
 
 let Users = (props) => {

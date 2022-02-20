@@ -9,24 +9,24 @@ import Settings from './components/Settings/Settings';
 import { Route, Routes } from 'react-router';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import Users from './components/Users/Users';
-import Clock from './components/tests/clock/clock';
+import Login from './components/Login/Login';
+import RequireAuth from './components/auth/RequireAuthHOC';
 
 
 const App = (props) => {
-  
     return (
       <div className='app-wrapper'>
         <Header store={props.store}/>
         <Nav sidebar={props.state.sidebar} />
         <div className='app-wrapper-content'>
           <Routes>
-            <Route path='/profile/:id' element={<Profile store={props.store} />} />
-            <Route path='/dialogs/*' element={<DialogsContainer store={props.store} />} />
+            <Route path='/profile/:id' element={<RequireAuth children={<Profile store={props.store} />}/>} />
+            <Route path='/dialogs/*' element={<RequireAuth children ={<DialogsContainer store={props.store} />}/>} />
             <Route path='/news' element={<News />} />
             <Route path='/music' element={<Music />} />
             <Route path='/settings' element={<Settings />} />
-            <Route path='/users' element={<Users store={props.store} />} />
-            <Route path='/clock' element={<Clock />} />
+            <Route path='/users' element={<RequireAuth children={<Users store={props.store}/>}/>}/>
+            <Route path='/login' element={<Login />} />
           </Routes>
         </div>
       </div>
