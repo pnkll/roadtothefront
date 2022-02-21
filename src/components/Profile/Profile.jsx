@@ -21,7 +21,7 @@ function Profile(props) {
     return () => { dispatch(clear()) }
   }, [])
 
-  // if (profile != null) {
+  if (profile != null) {
 
     return (
 
@@ -30,8 +30,8 @@ function Profile(props) {
         <MyPosts profilePage={profilePage} />
       </div>
     )
-  // }
-  // else { return <Preloader /> }
+  }
+  else { return <Preloader /> }
 }
 
 export default Profile
