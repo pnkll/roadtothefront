@@ -8,34 +8,26 @@ const ProfileStatus = (props) => {
     }, [])
 
 
-    const [localState, setState] = useState({ editMode: false })
+    const [localState, setState] = useState({ editMode: false, value: props.profilePage.status })
 
     const activatedMode = () => {
         setState({ editMode: true })
     }
 
     const disabledMode = (e) => {
+        // setState({value: e.target.value})
         if (e.keyCode === 13) {
-            setState({ editMode: false })
+            setState({ editMode: false, value: e.target.value })
         }
     }
-
-    const editMode = useSelector(state => localState.editMode)
-
-
-    console.log(editMode)
-
-    // if (localState.editMode === true){
-    //     return (<input onKeyDown={disabledMode}></input>)
-    // }
-    // else{
-    //     return (<span onDoubleClick={activatedMode}>Hello</span>)
-    // }
-
+    const onUpdateStatus = (event) => {
+        // setState({ value: event.target.value })
+        // console.log(event)
+    }
     return (<>
         {
-            editMode ? <input onKeyDown={disabledMode}></input>
-                : <span onDoubleClick={activatedMode}>Hello</span>
+            localState.editMode ? <input onKeyDown={disabledMode} onChange={onUpdateStatus}/>
+                : <span onDoubleClick={activatedMode}>{localState.value != null ? localState.value : 'Here need a status'}</span>
         }</>
     )
 }

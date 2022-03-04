@@ -7,7 +7,6 @@ import { checkAuth } from '../../redux/async/authThunk'
 
 function Header(props) {
   const dispatch = useDispatch()
-  console.log(props)
 
   const isAuth = useSelector(state => state.auth.isAuth)
   useEffect(() => {

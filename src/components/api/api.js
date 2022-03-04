@@ -28,6 +28,14 @@ export const setProfile = (currentUser) => {
     return instance.get(`profile/${currentUser}`)
 }
 
+export const getStatusAPI = (currentUser) => {
+    return instance.get(`profile/status/${currentUser}`)
+}
+
+export const updateStatusAPI = () => {
+    return instance.put('profile/status')
+}
+
 //Auth
 
 export const getAuth = () => {

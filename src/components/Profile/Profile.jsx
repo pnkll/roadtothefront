@@ -6,28 +6,29 @@ import { useEffect } from 'react'
 import { useParams } from 'react-router'
 import { useSelector, useDispatch } from 'react-redux'
 import Preloader from '../default/Preloader/Preloader'
-import { getProfile } from '../../redux/async/profileThunk'
+import { getProfile, getStatusThunk } from '../../redux/async/profileThunk'
 
 function Profile(props) {
   const dispatch = useDispatch()
 
-  const profilePage = useSelector(state => state.profilePage)
-  const profile = useSelector(state => state.profilePage.user)
+  // const profilePage = useSelector(state => state.profilePage)
+  // const profile = useSelector(state => state.profilePage.user)
   const params = useParams()
   const currentUser = params.id
 
   useEffect(() => {
     dispatch(getProfile(currentUser))
+    dispatch(getStatusThunk(currentUser))
     return () => { dispatch(clear()) }
   }, [])
 
-  if (profile != null) {
+  if (props.state.user != null) {
 
     return (
 
       <div className={classes.content}>
-        <ProfileInfo user={profile} />
-        <MyPosts profilePage={profilePage} />
+        <ProfileInfo profilePage={props.state} />
+        <MyPosts profilePage={props.state} />
       </div>
     )
   }

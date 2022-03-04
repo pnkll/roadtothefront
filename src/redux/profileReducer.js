@@ -2,6 +2,7 @@ const ADD_POST = 'ADD-POST'
 const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT'
 const SET_USER = 'SET-USER'
 const CLEAR_PROFILE_PAGE = 'CLEAR-PROFILE-PAGE'
+const GET_STATUS = 'GET-STATUS'
 
 const initialState = {
     posts: [
@@ -34,13 +35,17 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 newPostText: action.newText
             }
-        case 'SET-USER': 
+        case 'SET-USER':
             return {
                 ...state, user: action.profile
             }
         case 'CLEAR-PROFILE-PAGE':
             return {
-                ...state, user: null
+                ...state, user: null, status: null
+            }
+        case 'GET-STATUS':
+            return {
+                ...state, status: action.status
             }
         default:
             return state;
@@ -61,6 +66,10 @@ export const setUser = (profile) => {
 
 export const clear = () => {
     return { type: CLEAR_PROFILE_PAGE }
+}
+
+export const getStatus = (status) => {
+    return { type: GET_STATUS, status }
 }
 
 

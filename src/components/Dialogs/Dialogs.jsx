@@ -4,23 +4,31 @@ import DialogItem from './DialogItem/DialogItem';
 import React from 'react';
 import { useNavigate, useEffect} from 'react-router-dom'
 import { addMessageActionCreator, updateMessageActionCreator } from '../../redux/dialogsReducer'
+import { useDispatch, useSelector } from 'react-redux';
 
 
 
 const Dialogs = (props) => {
 
-  let onAddMessage = () => {
-    props.addMess()
-  }
+  const dispatch = useDispatch()
 
+  // const addMess = useSelector(state =>)
+
+  const messages = useSelector(state => state.dialogsPage.messages)
+  const dialogs = useSelector(state => state.dialogsPage.dialogs)
+  const newMessageValue = useSelector(state => state.dialogsPage.newMessageValue)
+
+  let onAddMessage = () => {
+    dispatch(addMessageActionCreator())
+  }
 
   let onUpdateMessage = (elem) =>{
     let newText = elem.target.value
-    props.updateMess(newText)
+    dispatch(updateMessageActionCreator(newText))
   }
 
   let messagesElems =
-    props.messages.map(m => {
+    messages.map(m => {
       if (m.userid == 'me') {
         return (<div key={m.key} className={classes.myMessage}><Message avatar={m.image} text={m.message} /></div>)
       }
@@ -30,7 +38,7 @@ const Dialogs = (props) => {
     })
 
   var dialogsElems =
-    props.dialogs.map(d => (<DialogItem key={d.id} avatar={d.image} id={d.id} name={d.name} path={'/dialogs/' + d.id} />))
+    dialogs.map(d => (<DialogItem key={d.id} avatar={d.image} id={d.id} name={d.name} path={'/dialogs/' + d.id} />))
 
 
     return (
@@ -41,7 +49,7 @@ const Dialogs = (props) => {
         <div className={classes.messages}>
           <div>Name</div>
           {messagesElems}
-          <textarea value={props.dialogsPage.newMessageValue} onChange={onUpdateMessage}></textarea>
+          <textarea value={newMessageValue} onChange={onUpdateMessage}></textarea>
           <button onClick={onAddMessage}>Add message</button>
         </div>
       </div>
