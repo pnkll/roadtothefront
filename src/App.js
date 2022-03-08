@@ -21,7 +21,7 @@ const App = (props) => {
         <Nav sidebar={props.state.sidebar} />
         <div className='app-wrapper-content'>
           <Routes>
-            <Route path='/profile/:id' element={<RequireAuth children={<Profile store={props.store} state={props.state.profilePage}/>}/>} />
+            <Route path='/profile/:id' element={<RequireAuth children={<Profile store={props.store} profilePage={props.state.profilePage}/>}/>} />
             <Route path='/dialogs/*' element={<RequireAuth children ={<Dialogs store={props.store} state={props.state.dialogsPage}/>}/>} />
             <Route path='/news' element={<News />} />
             <Route path='/music' element={<Music />} />

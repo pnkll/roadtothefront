@@ -22,13 +22,13 @@ function Profile(props) {
     return () => { dispatch(clear()) }
   }, [])
 
-  if (props.state.user != null) {
+  if (props.profilePage.user != null && props.profilePage.status != null) {
 
     return (
 
       <div className={classes.content}>
-        <ProfileInfo profilePage={props.state} />
-        <MyPosts profilePage={props.state} />
+        <ProfileInfo profilePage={props.profilePage} />
+        <MyPosts profilePage={props.profilePage} />
       </div>
     )
   }

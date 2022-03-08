@@ -15,7 +15,8 @@ const initialState = {
         { background: 'https://i.imgflip.com/vu74f.jpg', avatar: 'https://deti-online.com/img/spanchbob-color.jpg' }
     ],
     newPostText: 'put it',
-    user: null
+    user: null,
+    status: null,
 }
 
 const profileReducer = (state = initialState, action) => {

@@ -32,8 +32,8 @@ export const getStatusAPI = (currentUser) => {
     return instance.get(`profile/status/${currentUser}`)
 }
 
-export const updateStatusAPI = () => {
-    return instance.put('profile/status')
+export const updateStatusAPI = (status) => {
+    return instance.put('profile/status', {status: status})
 }
 
 //Auth
