@@ -2,6 +2,10 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { updateStatusThunk } from "../../../redux/async/profileThunk"
 
+
+//Грубейший костыль с VALUE: 0 на 33 строчке(подумать над тем как исправить)
+
+
 const ProfileStatus = (props) => {
 
     useEffect(() => {
@@ -15,35 +19,20 @@ const ProfileStatus = (props) => {
 
     const activatedMode = (e) => {
         setState({ editMode: true })
-        // // if (e.currentTarget === e.Target){
-        //     console.log('фокус установлен')
-        // // }
-        // console.log(localState.value)
-
     }
     console.log(localState.value)
 
     const disabledMode = (e) => {
-        // setState({value: e.target.value})
-        // if (e.keyCode === 13) {
-            setState({ editMode: false })
-            console.log(e.target.value)
-            
+            setState({ editMode: false, value: 0 })
+            console.log(e.target.value)            
             dispatch(updateStatusThunk(e.target.value))
-        // }
-
-        // if (e.currentTarget === e.target){
-            console.log('фокус снят')
-        // }
     }
-    // const onUpdateStatus = (event) => {
-    //     setState({ editMode: true, value: event.target.value })
-    //     // console.log(event)
-    // }
     return (<>
+
         {
             localState.editMode ? <input autoFocus={true} onBlur={disabledMode} />
-                : <span onDoubleClick={activatedMode}>{localState.value != null ? localState.value : 'Here need a status'}</span>
+                // : <span onDoubleClick={activatedMode}>{localState.value != null ? localState.value : 'Here need a status'}</span>
+                : <span onDoubleClick={activatedMode}>{props.profilePage.status != null || localState.value != 0 ? props.profilePage.status : 'Here need a status'}</span>
         }</>
     )
 }
