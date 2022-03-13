@@ -1,5 +1,4 @@
 const ADD_POST = 'ADD-POST'
-const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT'
 const SET_USER = 'SET-USER'
 const CLEAR_PROFILE_PAGE = 'CLEAR-PROFILE-PAGE'
 const GET_STATUS = 'GET-STATUS'
@@ -23,18 +22,13 @@ const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD-POST':
             let newPost = {
-                id: 3, message: state.newPostText, likesCount: '0', avatar: 'https://proprikol.ru/wp-content/uploads/2020/11/kartinki-patrika-17.jpg'
+                id: 3, message: action.text, likesCount: '0', avatar: 'https://proprikol.ru/wp-content/uploads/2020/11/kartinki-patrika-17.jpg'
             }
             return {
                 ...state,
                 posts: [...state.posts, newPost],
-                newPostText: ''
+                // newPostText: ''
 
-            }
-        case 'UPDATE-POST-TEXT':
-            return {
-                ...state,
-                newPostText: action.newText
             }
         case 'SET-USER':
             return {
@@ -53,12 +47,8 @@ const profileReducer = (state = initialState, action) => {
     }
 }
 
-export const addPost = () => {
-    return { type: ADD_POST }
-}
-
-export const updatePostText = (text) => {
-    return { type: UPDATE_POST_TEXT, newText: text }
+export const addPost = (text) => {
+    return { type: ADD_POST, text }
 }
 
 export const setUser = (profile) => {
@@ -72,6 +62,7 @@ export const clear = () => {
 export const getStatus = (status) => {
     return { type: GET_STATUS, status }
 }
+
 
 
 export default profileReducer

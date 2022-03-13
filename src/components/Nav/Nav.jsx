@@ -4,11 +4,9 @@ import SidebarFriends from './SidebarFriends/SidebarFriends'
 
 
 function Nav(props){
-  // console.log(props)
-  // debugger
     return (
         <nav className={classes.nav}>
-        <div className={classes.item}><NavLink to='/profile/2'>Profile</NavLink></div>
+        <div className={classes.item}><NavLink to={`/profile/${props.id}`}>Profile</NavLink></div>
         <div className={classes.item}><NavLink to='/dialogs'>Messages</NavLink></div>
         <div className={classes.item}><NavLink to='/users'>Users</NavLink></div>
         <div className={classes.item}><NavLink to='/news'>News</NavLink></div>

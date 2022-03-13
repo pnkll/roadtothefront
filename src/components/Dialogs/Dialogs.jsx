@@ -2,9 +2,9 @@ import classes from './Dialogs.module.css'
 import Message from './Message/Message'
 import DialogItem from './DialogItem/DialogItem';
 import React from 'react';
-import { useNavigate, useEffect} from 'react-router-dom'
 import { addMessageActionCreator, updateMessageActionCreator } from '../../redux/dialogsReducer'
 import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
 
 
 
@@ -12,19 +12,15 @@ const Dialogs = (props) => {
 
   const dispatch = useDispatch()
 
-  // const addMess = useSelector(state =>)
+  const { register, handleSubmit, reset} = useForm()
 
   const messages = useSelector(state => state.dialogsPage.messages)
   const dialogs = useSelector(state => state.dialogsPage.dialogs)
   const newMessageValue = useSelector(state => state.dialogsPage.newMessageValue)
 
-  let onAddMessage = () => {
-    dispatch(addMessageActionCreator())
-  }
-
-  let onUpdateMessage = (elem) =>{
-    let newText = elem.target.value
-    dispatch(updateMessageActionCreator(newText))
+  let onAddMessage = (value) => {
+    dispatch(addMessageActionCreator(value.message))
+    reset()
   }
 
   let messagesElems =
@@ -49,8 +45,10 @@ const Dialogs = (props) => {
         <div className={classes.messages}>
           <div>Name</div>
           {messagesElems}
-          <textarea value={newMessageValue} onChange={onUpdateMessage}></textarea>
-          <button onClick={onAddMessage}>Add message</button>
+          <form onSubmit={handleSubmit(onAddMessage)}>
+            <input type='text' {...register('message')}/>
+            <input type='submit'/>
+          </form>
         </div>
       </div>
   

@@ -1,30 +1,32 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { updatePostText, addPost } from '../../../redux/profileReducer';
+import { useForm } from 'react-hook-form';
+import { useDispatch} from 'react-redux';
+import { addPost } from '../../../redux/profileReducer';
 import classes from './MyPosts.module.css'
 import Post from './Post/Post';
 
 function MyPosts(props) {
 
-    let newPostElem = React.createRef();
+    // let newPostElem = React.createRef();
     let postElems = props.profilePage.posts.map(p => (<Post key={p.id} message={p.message} likesCount={p.likesCount} avatar={p.avatar} />));
 
     const dispatch = useDispatch()
 
-    const onUpdatePostText = () => {
-        let newText = newPostElem.current.value;
-        dispatch(updatePostText(newText))
-    }
+const { register, handleSubmit, reset } = useForm()
 
-    const onAddPost = () => {
-        dispatch(addPost())
+    const onAddPost = (value) => {
+        dispatch(addPost(value.text))
+        reset()
     }
 
     return (
         <div className={classes.posts}>
             My posts
-            <div><textarea onChange={onUpdatePostText} ref={newPostElem} value={props.profilePage.newPostText} /></div>
-            <button onClick={onAddPost}>Add post</button>
+            <form onSubmit={handleSubmit(onAddPost)}>
+                <input type='text' {...register('text')}/>
+                <input type='submit'/>
+
+            </form>
             {postElems}
         </div>
     )

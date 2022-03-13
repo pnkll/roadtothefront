@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { updateStatusThunk } from "../../../redux/async/profileThunk"
 
@@ -7,11 +7,6 @@ import { updateStatusThunk } from "../../../redux/async/profileThunk"
 
 
 const ProfileStatus = (props) => {
-
-    useEffect(() => {
-
-    }, [])
-    console.log(props.profilePage.status)
     
     const dispatch = useDispatch()
 
@@ -20,13 +15,12 @@ const ProfileStatus = (props) => {
     const activatedMode = (e) => {
         setState({ editMode: true })
     }
-    console.log(localState.value)
 
     const disabledMode = (e) => {
-            setState({ editMode: false, value: 0 })
-            console.log(e.target.value)            
+            setState({ editMode: false, value: 0 })         
             dispatch(updateStatusThunk(e.target.value))
     }
+
     return (<>
 
         {

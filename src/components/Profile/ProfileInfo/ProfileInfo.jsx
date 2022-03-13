@@ -1,10 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { NavLink } from 'react-router-dom'
-import { getStatus } from '../../../redux/async/profileThunk'
 import classes from './ProfileInfo.module.css'
 import ProfileStatus from './ProfileStatus'
-import ProfileStatusHOC from './ProfileStatusHOC'
 
 function ProfileInfo(props) {
 

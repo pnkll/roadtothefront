@@ -15,36 +15,24 @@ const initialState = {
     { key: 4, userid: 'me', image: 'https://www.seekpng.com/png/detail/59-593478_mr-krabs-mr-krabs-png.png', message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem laboriosam dolore velit rerum soluta deserunt nisi, ipsa architecto id exercitationem.' },
     { key: 5, image: 'https://deti-online.com/img/spanchbob-color.jpg', message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem laboriosam dolore velit rerum soluta deserunt nisi.' }
   ],
-  newMessageValue: 'Message area'
+  // newMessageValue: ''
 }
 
 const dialogsReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD-MESSAGE': {
-      let text = state.newMessageValue
-      return { 
+      return {
         ...state,
-      messages: [...state.messages, { key: '', userid: 'me', message: text, image: 'https://www.seekpng.com/png/detail/59-593478_mr-krabs-mr-krabs-png.png' }],
-      newMessageValue: '' 
+        messages: [...state.messages, { key: '', userid: 'me', message: action.message, image: 'https://www.seekpng.com/png/detail/59-593478_mr-krabs-mr-krabs-png.png' }],
       }
-      // stateCopy.messages = [...state.messages, { userid: 'me', message: text, image: 'https://www.seekpng.com/png/detail/59-593478_mr-krabs-mr-krabs-png.png' }]
-      // stateCopy.messages.push({ userid: 'me', message: text, image: 'https://www.seekpng.com/png/detail/59-593478_mr-krabs-mr-krabs-png.png' })
-      // stateCopy.newMessageValue = { ...state.newMessageValue }
-      // stateCopy.newMessageValue = ''
     }
-    case 'UPDATE-MESSAGE-TEXT': {
-        return { ...state,
-        newMessageValue: action.newText }
-        // stateCopy.newMessageValue = { ...state.newMessageValue }
-        // stateCopy.newMessageValue = action.newText;
-      }
     default:
       return state;
   }
 }
 
-export const addMessageActionCreator = () => {
-  return { type: ADD_MESSAGE }
+export const addMessageActionCreator = (message) => {
+  return { type: ADD_MESSAGE, message }
 }
 
 export const updateMessageActionCreator = (text) => {

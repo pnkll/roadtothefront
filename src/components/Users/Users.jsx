@@ -69,7 +69,7 @@ let Users = (props) => {
             <div className={classes.btns}>
                 <div>{isFetching ? <Preloader /> : null}</div>
                 {pages.map(p => {
-                    return <span onClick=
+                    return <span key={p} onClick=
                         {(e) => { dispatch(onSetPageThunk(p, pageSize)) }} className={currentPage === p
                             ? classes.selectedPage
                             : classes.page}>{p}</span>
