@@ -4,16 +4,17 @@ import { NavLink } from "react-router-dom";
 import classes from './Users.module.css';
 import Preloader from "../default/Preloader/Preloader";
 import { followThunk, getUsersThunk, onSetPageThunk, unFollowThunk } from "../../redux/async/usersThunk";
+import { getButtonState, getCurrentPage, getFetching, getPageCount, getPageSize, getUsers } from "../../redux/selectors/users-selectors";
 
 let Users = (props) => {
 
     const dispatch = useDispatch()
-    const pageCount = useSelector(state => state.usersPage.pageCount)
-    const pageSize = useSelector(state => state.usersPage.pageSize)
-    const currentPage = useSelector(state => state.usersPage.currentPage)
-    const users = useSelector(state => state.usersPage.users)
-    const isFetching = useSelector(state => state.usersPage.isFetching)
-    const button = useSelector(state => state.usersPage.button)
+    const pageCount = useSelector(getPageCount)
+    const pageSize = useSelector(getPageSize)
+    const currentPage = useSelector(getCurrentPage)
+    const users = useSelector(getUsers)
+    const isFetching = useSelector(getFetching)
+    const button = useSelector(getButtonState)
 
     useEffect(() => {
         if (users.length === 0) {

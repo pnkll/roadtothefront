@@ -38,7 +38,7 @@ function Header(props) {
         ? <>
           <NavLink to='/login'>Login</NavLink><br />
           <NavLink to='/sign'>Sign in</NavLink></>
-        : <><NavLink to='/me'>My account</NavLink><br />
+        : <><NavLink to={`/profile/${props.state.auth.userId}`}>{props.state.auth.login}</NavLink><br />
           <button onClick={logout}>Log out</button></>}</div>
     </header>
   )
