@@ -11,38 +11,41 @@ import Dialogs from './components/Dialogs/Dialogs'
 import Users from './components/Users/Users';
 import Login from './components/Login/Login';
 import RequireAuth from './components/auth/RequireAuthHOC';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { initializeApp } from './redux/async/appThunk';
 import Preloader from './components/default/Preloader/Preloader';
+// import { state } from './redux/store';
+
 
 
 const App = (props) => {
 
 
 const dispatch = useDispatch()
+const state = useSelector(state => state)
 
     useEffect(()=>{
       dispatch(initializeApp())
     },[])
 
-    if(!props.state.app.initialized){
+    if(!state.app.initialized){
 
     return <Preloader/>
-    }
+    }    
 
-    return (
+    return (      
       <div className='app-wrapper'>
-        <Header store={props.store} state={props.state}/>
-        <Nav sidebar={props.state.sidebar} id={props.state.auth.userId}/>
+        <Header store={props.store} state={state}/>
+        <Nav sidebar={state.sidebar} id={state.auth.userId}/>
         <div className='app-wrapper-content'>
           <Routes>
-            <Route path='/profile/:id' element={<RequireAuth children={<Profile store={props.store} profilePage={props.state.profilePage}/>}/>} />
-            <Route path='/dialogs/*' element={<RequireAuth children ={<Dialogs store={props.store} state={props.state.dialogsPage}/>}/>} />
+            <Route path='/profile/:id' element={<RequireAuth children={<Profile store={props.store} profilePage={state.profilePage}/>}/>} />
+            <Route path='/dialogs/*' element={<RequireAuth children ={<Dialogs store={props.store} state={state.dialogsPage}/>}/>} />
             <Route path='/news' element={<News />} />
             <Route path='/music' element={<Music />} />
             <Route path='/settings' element={<Settings />} />
-            <Route path='/users' element={<RequireAuth children={<Users store={props.store} state={props.state.usersPage} />}/>}/>
-            <Route path='/login' element={<Login state={props.state}/>} />
+            <Route path='/users' element={<RequireAuth children={<Users store={props.store} state={state.usersPage} />}/>}/>
+            <Route path='/login' element={<Login state={state}/>} />
           </Routes>
         </div>
       </div>

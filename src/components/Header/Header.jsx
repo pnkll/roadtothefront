@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import classes from './Header.module.css'
 import { useDispatch } from "react-redux";
-import { checkAuth, logoutThunk } from '../../redux/async/authThunk'
+import { logoutThunk } from '../../redux/async/authThunk'
 
 
 function Header(props) {
