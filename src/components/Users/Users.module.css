@@ -22,26 +22,8 @@
     padding-right: 50px;
 }
 
-.selectedPage{
-    padding: 2px 5px;
-    font-weight: bold;
-    background-color: white;
-    color: black;
-}
-
-.page{
-    padding: 2px 5px;
-    background-color: black;
-    color: white;
-}
-
 .btns{
     margin-top: 5px;
-}
-
-.btns img{
-    max-width: 40px;
-    display: inline-block;
 }
 
 .followed{

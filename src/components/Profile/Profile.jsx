@@ -6,7 +6,7 @@ import { clear } from '../../redux/profileReducer'
 import { useEffect } from 'react'
 import { useParams } from 'react-router'
 import { useDispatch } from 'react-redux'
-import Preloader from '../default/Preloader/Preloader'
+import Preloader from '../common/Preloader/Preloader'
 import { getProfile, getStatusThunk } from '../../redux/async/profileThunk'
 
 

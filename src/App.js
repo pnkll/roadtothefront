@@ -17,7 +17,7 @@ import RequireAuth from './components/auth/RequireAuthHOC';
 import { useDispatch, useSelector } from 'react-redux';
 import { initializeApp } from './redux/async/appThunk';
 import { useNavigate } from 'react-router-dom';
-import Preloader from './components/default/Preloader/Preloader';
+import Preloader from './components/common/Preloader/Preloader';
 
 
 
