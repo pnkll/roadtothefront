@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react';
 import './App.css';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 import Header from './components/Header/Header';
 import Nav from './components/Nav/Nav';
-import Profile from './components/Profile/Profile';
+import Profile, { ProfileWrapper } from './components/Profile/Profile';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
@@ -13,13 +16,13 @@ import Login from './components/Login/Login';
 import RequireAuth from './components/auth/RequireAuthHOC';
 import { useDispatch, useSelector } from 'react-redux';
 import { initializeApp } from './redux/async/appThunk';
+import { useNavigate } from 'react-router-dom';
 import Preloader from './components/default/Preloader/Preloader';
-// import { state } from './redux/store';
+
 
 
 
 const App = (props) => {
-
 
 const dispatch = useDispatch()
 const state = useSelector(state => state)
@@ -29,12 +32,12 @@ const state = useSelector(state => state)
     },[])
 
     if(!state.app.initialized){
-
     return <Preloader/>
     }    
 
-    return (      
+    return (  
       <div className='app-wrapper'>
+        <>Hi</>
         <Header store={props.store} state={state}/>
         <Nav sidebar={state.sidebar} id={state.auth.userId}/>
         <div className='app-wrapper-content'>
@@ -51,5 +54,6 @@ const state = useSelector(state => state)
       </div>
     )
   }
+
 
 export default App;

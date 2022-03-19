@@ -1,3 +1,4 @@
+import React from 'react'
 import classes from './Profile.module.css'
 import MyPosts from './My posts/MyPosts'
 import ProfileInfo from './ProfileInfo/ProfileInfo'
@@ -8,10 +9,15 @@ import { useDispatch } from 'react-redux'
 import Preloader from '../default/Preloader/Preloader'
 import { getProfile, getStatusThunk } from '../../redux/async/profileThunk'
 
+
+window.props = []
+
 function Profile(props) {
   const dispatch = useDispatch()
   const params = useParams()
   const currentUser = params.id
+
+  window.props.push(props)
 
   useEffect(() => {
     dispatch(getProfile(currentUser))
@@ -31,5 +37,7 @@ function Profile(props) {
   }
   else { return <Preloader /> }
 }
+
+// export const ProfileWrapper = (props) => React.memo(Profile)
 
 export default Profile
