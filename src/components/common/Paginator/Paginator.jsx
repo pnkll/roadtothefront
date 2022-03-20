@@ -1,4 +1,3 @@
-import React from "react"
 import { useDispatch } from "react-redux"
 import { onSetPageThunk } from "../../../redux/async/usersThunk"
 import Preloader from "../Preloader/Preloader"
