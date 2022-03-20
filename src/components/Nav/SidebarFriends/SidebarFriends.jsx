@@ -1,3 +1,4 @@
+import React from 'react'
 import FriendItem from './FriendsItem/FriendItem'
 import classes from './SidebarFriends.module.css'
 

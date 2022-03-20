@@ -1,7 +1,8 @@
+import React from 'react'
 import classes from './FriendItem.module.css'
 import {NavLink} from 'react-router-dom'
 
-function FriendItem(props) {
+const FriendItem = (props) => {
     return (
         <div className={classes.friend}>
             <NavLink to={`profile/${props.users.path}`}>
