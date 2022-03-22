@@ -2,13 +2,13 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Paginator from "../common/Paginator/Paginator";
 import { getUsersThunk } from "../../redux/async/usersThunk";
-import { getCurrentPage, getFetching, getPageCount, getPageSize, getUsers } from "../../redux/selectors/users-selectors";
+import { getCurrentPage, getFetching, getTotalUsersCount, getPageSize, getUsers } from "../../redux/selectors/users-selectors";
 import User from './User'
 
 let Users = (props) => {
 
     const dispatch = useDispatch()
-    const pageCount = useSelector(getPageCount)
+    const totalUsersCount = useSelector(getTotalUsersCount)
     const pageSize = useSelector(getPageSize)
     const currentPage = useSelector(getCurrentPage)
     const users = useSelector(getUsers)
@@ -30,8 +30,9 @@ let Users = (props) => {
             <Paginator
                 isFetching={isFetching}
                 pageSize={pageSize}
-                pageCount={pageCount}
-                currentPage={currentPage} />
+                totalItemsCount={totalUsersCount}
+                currentPage={currentPage}
+                portionSize={5} />
         </div>
     )
 }
