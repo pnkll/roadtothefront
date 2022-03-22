@@ -4,6 +4,7 @@ import Paginator from "../common/Paginator/Paginator";
 import { getUsersThunk } from "../../redux/async/usersThunk";
 import { getCurrentPage, getFetching, getTotalUsersCount, getPageSize, getUsers } from "../../redux/selectors/users-selectors";
 import User from './User'
+import { Outlet } from "react-router-dom";
 
 let Users = (props) => {
 
@@ -33,6 +34,7 @@ let Users = (props) => {
                 totalItemsCount={totalUsersCount}
                 currentPage={currentPage}
                 portionSize={5} />
+                <Outlet/>
         </div>
     )
 }
