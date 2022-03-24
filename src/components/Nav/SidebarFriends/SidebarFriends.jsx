@@ -24,7 +24,7 @@ const SidebarFriends = React.memo(function SidebarFriendsMemo(props) {
         <div className={classes.friends}>
             Friends
         <div className={classes.container}>
-            {friends.map( u => <FriendItem key={u.id} users={u}/>)}
+            {friends.slice(0,6).map( u => <FriendItem key={u.id} users={u}/>)}
             {/* <FriendItem users={props.users[0]}/>
             <FriendItem users={props.users[1]}/>
             <FriendItem users={props.users[2]}/>
