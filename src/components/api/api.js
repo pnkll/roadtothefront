@@ -49,3 +49,9 @@ export const login = (email, password, rememberMe) => {
 export const logout = () => {
     return instance.delete('auth/login')
 }
+
+//Follows
+
+export const setFollowedUsers = (totalCount) => {
+    return instance.get(`users?count=${totalCount}`)
+}

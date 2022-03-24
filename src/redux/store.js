@@ -7,6 +7,7 @@ import authReducer from "./authReducer";
 import thunk from "redux-thunk";
 import appReducer from "./appReducer";
 import { compose } from "redux";
+import followsReducer from "./followsReducer";
 
 const reducers = combineReducers({
     profilePage: profileReducer,
@@ -14,7 +15,8 @@ const reducers = combineReducers({
     sidebar: sidebarReducer,
     usersPage: usersReducer,
     auth: authReducer,
-    app: appReducer
+    app: appReducer,
+    friendsPage: followsReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

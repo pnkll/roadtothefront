@@ -12,6 +12,7 @@ import RequireAuth from './components/auth/RequireAuthHOC';
 import { useDispatch, useSelector } from 'react-redux';
 import { initializeApp } from './redux/async/appThunk';
 import Preloader from './components/common/Preloader/Preloader';
+import Follows from './components/Follows/Follows';
 
 const Dialogs = lazy(() => import('./components/Dialogs/Dialogs'))
 const Users = lazy(() => import('./components/Users/Users'))
@@ -47,6 +48,7 @@ const App = (props) => {
               <Route path='login' element={<Login state={state} />} />
               <Route path='dialogs/*' element={<RequireAuth children={<Dialogs store={props.store} state={state.dialogsPage} />} />} />
               <Route path='users' element={<RequireAuth children={<Users store={props.store} state={state.usersPage} />} />} />
+              <Route path='follows' element={<RequireAuth children={<Follows/>} />} />
             </Routes>
           </Suspense>
         </div>

@@ -34,7 +34,6 @@ let Users = (props) => {
                 totalItemsCount={totalUsersCount}
                 currentPage={currentPage}
                 portionSize={5} />
-                <Outlet/>
         </div>
     )
 }
