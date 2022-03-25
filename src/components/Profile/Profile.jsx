@@ -10,20 +10,19 @@ import Preloader from '../common/Preloader/Preloader'
 import { getProfile, getStatusThunk } from '../../redux/async/profileThunk'
 
 
-window.props = []
 
 function Profile(props) {
   const dispatch = useDispatch()
   const params = useParams()
   const currentUser = params.id
 
-  window.props.push(props)
 
   useEffect(() => {
     dispatch(getProfile(currentUser))
     dispatch(getStatusThunk(currentUser))
     return () => { dispatch(clear()) }
-  }, [])
+  }, [params.id])
+
 
   if (props.profilePage.user != null && props.profilePage.status != null) {
 

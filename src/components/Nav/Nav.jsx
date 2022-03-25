@@ -2,14 +2,12 @@ import React, { useEffect } from 'react'
 import classes from './Nav.module.css'
 import {NavLink} from 'react-router-dom'
 import SidebarFriends from './SidebarFriends/SidebarFriends'
-import { useDispatch, useSelector } from 'react-redux'
-import { getFriends } from '../../redux/selectors/follows-selectors'
-import { getfollowsThunk } from '../../redux/async/followsThunk'
-import { getUsers } from '../../redux/selectors/users-selectors'
+import { useSelector } from 'react-redux'
+
+const Nav = (props) => {
 
 
-function Nav(props){
-
+  const isAuth = useSelector(state => state.auth.isAuth)
 
     return (
         <nav className={classes.nav}>
@@ -19,7 +17,9 @@ function Nav(props){
         <div className={classes.item}><NavLink to='/news'>News</NavLink></div>
         <div className={classes.item}><NavLink to='/music'>Music</NavLink></div>
         <div className={classes.item}><NavLink to='/settings'>Settings</NavLink></div>
-        <SidebarFriends users={props.sidebar.users}/>
+        
+        {isAuth && <SidebarFriends users={props.sidebar.users}/>}
+        
       </nav>
     )
 }
