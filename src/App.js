@@ -1,52 +1,61 @@
-import React, { useEffect } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import './App.css';
 import Header from './components/Header/Header';
 import Nav from './components/Nav/Nav';
-import Profile from './components/Profile/Profile';
+import Profile, { ProfileWrapper } from './components/Profile/Profile';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
-import { Route, Routes } from 'react-router';
-import Dialogs from './components/Dialogs/Dialogs'
-import Users from './components/Users/Users';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './components/Login/Login';
 import RequireAuth from './components/auth/RequireAuthHOC';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { initializeApp } from './redux/async/appThunk';
-import Preloader from './components/default/Preloader/Preloader';
+import Preloader from './components/common/Preloader/Preloader';
+import Follows from './components/Follows/Follows';
+
+const Dialogs = lazy(() => import('./components/Dialogs/Dialogs'))
+const Users = lazy(() => import('./components/Users/Users'))
 
 
 const App = (props) => {
 
+  const dispatch = useDispatch()
+  const state = useSelector(state => state)
 
-const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(initializeApp())
+  }, [])
 
-    useEffect(()=>{
-      dispatch(initializeApp())
-    },[])
-
-    if(!props.state.app.initialized){
-
-    return <Preloader/>
-    }
-
-    return (
-      <div className='app-wrapper'>
-        <Header store={props.store} state={props.state}/>
-        <Nav sidebar={props.state.sidebar} id={props.state.auth.userId}/>
-        <div className='app-wrapper-content'>
-          <Routes>
-            <Route path='/profile/:id' element={<RequireAuth children={<Profile store={props.store} profilePage={props.state.profilePage}/>}/>} />
-            <Route path='/dialogs/*' element={<RequireAuth children ={<Dialogs store={props.store} state={props.state.dialogsPage}/>}/>} />
-            <Route path='/news' element={<News />} />
-            <Route path='/music' element={<Music />} />
-            <Route path='/settings' element={<Settings />} />
-            <Route path='/users' element={<RequireAuth children={<Users store={props.store} state={props.state.usersPage} />}/>}/>
-            <Route path='/login' element={<Login state={props.state}/>} />
-          </Routes>
-        </div>
-      </div>
-    )
+  if (!state.app.initialized) {
+    return <Preloader />
   }
+
+  return (
+    <div className='app-wrapper'>
+
+      <BrowserRouter>
+        <>Hi</>
+        <Header store={props.store} state={state} />
+        <Nav sidebar={state.sidebar} id={state.auth.userId} />
+        <div className='app-wrapper-content'>
+          <Suspense fallback={<Preloader />}>
+            <Routes>
+              <Route path='profile/:id' element={<RequireAuth children={<Profile store={props.store} profilePage={state.profilePage} />} />} />
+              <Route path='news' element={<News />} />
+              <Route path='music' element={<Music />} />
+              <Route path='settings' element={<Settings />} />
+              <Route path='login' element={<Login state={state} />} />
+              <Route path='dialogs/*' element={<RequireAuth children={<Dialogs store={props.store} state={state.dialogsPage} />} />} />
+              <Route path='users' element={<RequireAuth children={<Users store={props.store} state={state.usersPage} />} />} />
+              <Route path='follows' element={<RequireAuth children={<Follows/>} />} />
+            </Routes>
+          </Suspense>
+        </div>
+      </BrowserRouter>
+    </div>
+  )
+}
+
 
 export default App;

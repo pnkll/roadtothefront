@@ -1,6 +1,7 @@
+import React from 'react'
 import classes from './Settings.module.css'
 
-function Settings(){
+const Settings = () => {
     return (
         <div className={classes.content}>
         <div>Settings</div>

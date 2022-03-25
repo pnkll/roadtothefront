@@ -11,7 +11,7 @@ const TOOGLE_OF_BUTTON = 'TOOGLE-OF-BUTTON'
 const initialState = {
     users: [],
     pageSize: 4,
-    pageCount: 30,
+    totalUsersCount: 70,
     currentPage: 1,
     isFetching: true,
     button: false,
@@ -56,10 +56,10 @@ const usersReducer = (state = initialState, action) => {
             return {
                 ...state, currentPage: action.currentPage
             }
-        case 'SET-PAGE-COUNT':
-            return {
-                ...state, pageCount: action.pageCount
-            }
+        // case 'SET-PAGE-COUNT':
+        //     return {
+        //         ...state, pageCount: action.pageCount
+        //     }
         case 'TOOGLE-IS-FETCHING':
             return {
                 ...state, isFetching: action.isFetching
@@ -78,7 +78,7 @@ export const unfollow = (userId) => ({ type: UNFOLLOW, userId })
 export const setUsers = (users) => ({ type: SETUSERS, users })
 export const showMore = (number) => ({ type: SHOW_MORE, currentPage: number })
 export const setPage = (pageNum) => ({ type: SET_PAGE, currentPage: pageNum })
-export const setPageCount = (pageCount) => ({ type: SET_PAGE_COUNT, pageCount })
+// export const setPageCount = (pageCount) => ({ type: SET_PAGE_COUNT, pageCount })
 export const toogleIsFetching = (isFetching) => ({ type: TOOGLE_IS_FETCHING, isFetching })
 export const toogleOfButton = (toogle) => ({ type: TOOGLE_OF_BUTTON, toogle })
 

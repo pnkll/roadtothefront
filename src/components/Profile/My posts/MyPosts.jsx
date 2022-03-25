@@ -5,7 +5,7 @@ import { addPost } from '../../../redux/profileReducer';
 import classes from './MyPosts.module.css'
 import Post from './Post/Post';
 
-function MyPosts(props) {
+const MyPosts = React.memo(props => {
 
     // let newPostElem = React.createRef();
     let postElems = props.profilePage.posts.map(p => (<Post key={p.id} message={p.message} likesCount={p.likesCount} avatar={p.avatar} />));
@@ -30,6 +30,6 @@ const { register, handleSubmit, reset } = useForm()
             {postElems}
         </div>
     )
-}
+})
 
 export default MyPosts
