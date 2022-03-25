@@ -1,16 +1,8 @@
 import React from 'react'
-import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
 import classes from './ProfileInfo.module.css'
 import ProfileStatus from './ProfileStatus'
 
 function ProfileInfo(props) {
-
-const dispatch = useDispatch()
-
-    useEffect(()=>{
-        // dispatch(getStatus(props.profilePage.user.userId))
-    },[])
 
     return (
         <div>

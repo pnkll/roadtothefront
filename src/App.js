@@ -47,7 +47,7 @@ const App = (props) => {
               <Route path='settings' element={<Settings />} />
               <Route path='login' element={<Login state={state} />} />
               <Route path='dialogs/*' element={<RequireAuth children={<Dialogs store={props.store} state={state.dialogsPage} />} />} />
-              <Route path='users' element={<RequireAuth children={<Users store={props.store} state={state.usersPage} />} />} />
+              <Route path='users' element={<RequireAuth children={<Users  />} />} />
               <Route path='follows' element={<RequireAuth children={<Follows/>} />} />
             </Routes>
           </Suspense>
