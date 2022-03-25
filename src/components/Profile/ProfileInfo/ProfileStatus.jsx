@@ -2,6 +2,7 @@ import React from "react"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { updateStatusThunk } from "../../../redux/async/profileThunk"
+import { getStatus } from "../../../redux/selectors/profile-selectors"
 
 
 //Грубейший костыль с VALUE: 0 на 33 строчке(подумать над тем как исправить)
@@ -11,7 +12,10 @@ const ProfileStatus = (props) => {
 
     const dispatch = useDispatch()
 
-    const [localState, setState] = useState({ editMode: false, value: props.profilePage.status })
+    const status = useSelector(getStatus)
+
+
+    const [localState, setState] = useState({ editMode: false, value: status })
 
     const activatedMode = (e) => {
         setState({ editMode: true })
@@ -29,8 +33,7 @@ const ProfileStatus = (props) => {
 
         {
             localState.editMode ? <input autoFocus={true} onBlur={disabledMode} />
-                // : <span onDoubleClick={activatedMode}>{localState.value != null ? localState.value : 'Here need a status'}</span>
-                : <span onDoubleClick={activatedMode}>{props.profilePage.status != null || localState.value != 0 ? props.profilePage.status : 'Here need a status'}</span>
+                : <span onDoubleClick={activatedMode}>{status != null || localState.value != 0 ? status : 'Here need a status'}</span>
         }
     </>
     )

@@ -1,14 +1,16 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addPost } from '../../../redux/profileReducer';
+import { getPosts } from '../../../redux/selectors/profile-selectors';
 import classes from './MyPosts.module.css'
 import Post from './Post/Post';
 
 const MyPosts = React.memo(props => {
 
-    // let newPostElem = React.createRef();
-    let postElems = props.profilePage.posts.map(p => (<Post key={p.id} message={p.message} likesCount={p.likesCount} avatar={p.avatar} />));
+    const posts = useSelector(getPosts)
+
+    let postElems = posts.map(p => (<Post key={p.id} message={p.message} likesCount={p.likesCount} avatar={p.avatar} />));
 
     const dispatch = useDispatch()
 

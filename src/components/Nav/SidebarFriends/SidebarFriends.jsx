@@ -7,7 +7,7 @@ import Preloader from '../../common/Preloader/Preloader'
 import FriendItem from './FriendsItem/FriendItem'
 import classes from './SidebarFriends.module.css'
 
-const SidebarFriends = React.memo(function SidebarFriendsMemo(props) {
+const SidebarFriends = React.memo( props => {
 
     const dispatch = useDispatch()
     const friends = useSelector(getFriends)
@@ -17,19 +17,13 @@ const SidebarFriends = React.memo(function SidebarFriendsMemo(props) {
       dispatch(getfollowsThunk(70))
     },[users])
 
-    const friendsArr = []
-
+    
     if (friends.length != 0){
     return (
         <div className={classes.friends}>
             Friends
         <div className={classes.container}>
-            {friends.slice(0,6).map( u => <FriendItem key={u.id} users={u}/>)}
-            {/* <FriendItem users={props.users[0]}/>
-            <FriendItem users={props.users[1]}/>
-            <FriendItem users={props.users[2]}/>
-            <FriendItem users={props.users[1]}/> */}
-            
+            {friends.slice(0,6).map( u => <FriendItem key={u.id} users={u}/>)}            
         </div>
         </div>
     )

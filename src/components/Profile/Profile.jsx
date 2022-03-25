@@ -29,14 +29,12 @@ function Profile(props) {
     return (
 
       <div className={classes.content}>
-        <ProfileInfo profilePage={props.profilePage} />
-        <MyPosts profilePage={props.profilePage} />
+        <ProfileInfo/>
+        <MyPosts />
       </div>
     )
   }
   else { return <Preloader /> }
 }
-
-// export const ProfileWrapper = (props) => React.memo(Profile)
 
 export default Profile

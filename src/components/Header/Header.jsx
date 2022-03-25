@@ -6,10 +6,6 @@ import { logoutThunk } from '../../redux/async/authThunk'
 
 
 function Header(props) {
-  
-  // useEffect(() => {
-  //   dispatch(checkAuth())
-  // },[]) 
 
   const moveToLoginPage = () => {
     navigate('/login')
@@ -28,6 +24,8 @@ function Header(props) {
   const logout = () => {
     dispatch(logoutThunk())
   }
+
+  const photo = props.state.usersPage
 
 
   return (
