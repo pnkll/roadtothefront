@@ -3,7 +3,8 @@ const SET_USER = 'SET-USER'
 const CLEAR_PROFILE_PAGE = 'CLEAR-PROFILE-PAGE'
 const GET_STATUS = 'GET-STATUS'
 const SET_OWNER = 'SET-OWNER'
-
+const UPDATE_PHOTO = 'UPDATE-PHOTO'
+ 
 const initialState = {
     posts: [
         { id: 1, message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', likesCount: '13', avatar: 'https://yt3.ggpht.com/ytc/AKedOLR2ToVUrFKMgbZiOAtOZvObNAy_9tpiRzm_5tLX=s900-c-k-c0x00ffffff-no-rj' },
@@ -41,6 +42,11 @@ const profileReducer = (state = initialState, action) => {
             return {
                 ...state, isOwner: action.isOwner
             }
+        case 'UPDATE-PHOTO':
+            return {
+                ...state,  
+                user: {...state.user, photos: {small: action.small, large: action.large}}
+            }    
         default:
             return state;
     }
@@ -66,5 +72,8 @@ export const setOwner = (isOwner) => {
     return { type: SET_OWNER, isOwner }
 }
 
+export const updateAvatar = (large, small) => {
+    return {type: UPDATE_PHOTO, large, small}
+}
 
 export default profileReducer

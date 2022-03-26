@@ -36,6 +36,10 @@ export const updateStatusAPI = (status) => {
     return instance.put('profile/status', {status: status})
 }
 
+export const updatePhoto = (image) => {
+    return instance.put('profile/photo', image, { headers: { 'Content-type': 'multipart/form-data' }})
+}
+
 //Auth
 
 export const getAuth = () => {
