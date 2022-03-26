@@ -9,3 +9,7 @@ export const getStatus = (state) => {
 export const getPosts = (state) => {
     return state.profilePage.posts
 }
+
+export const getOwner = (state) => {
+    return  state.profilePage.isOwner
+}
