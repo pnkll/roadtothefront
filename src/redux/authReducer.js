@@ -1,6 +1,7 @@
 const SET_USER_DATA = 'SET-USER-DATA'
 const AUTH_ERROR = 'AUTH-ERROR'
- 
+const CLEAR_AUTH_ERROR = 'CLEAR-AUTH-ERROR'
+
 const initialState = {
     userId: null,
     email: null,
@@ -17,11 +18,16 @@ const authReducer = (state = initialState, action) => {
                 ...action.data,
                 errors: null
             }
-            case 'AUTH-ERROR':
-                return{
-                    ...state,
-                    errors: action.message
-                }
+        case 'AUTH-ERROR':
+            return {
+                ...state,
+                errors: action.message
+            }
+        case 'CLEAR-AUTH-ERROR':
+            return {
+                ...state,
+                errors: null
+            }
         default: {
             return state;
 
@@ -34,7 +40,11 @@ export const setUserData = (userId, login, email, isAuth) => {
 }
 
 export const authError = (message) => {
-    return { type: AUTH_ERROR, message}
+    return { type: AUTH_ERROR, message }
+}
+
+export const authClear = () => {
+    return { type: CLEAR_AUTH_ERROR }
 }
 
 

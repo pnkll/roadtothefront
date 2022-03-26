@@ -1,16 +1,24 @@
 import React from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { loginThunk } from "../../redux/async/authThunk"
 import { useForm } from 'react-hook-form'
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 import classes from './Login.module.css'
+import { authClear } from "../../redux/authReducer"
+import { getAuth, getEmail, getErrorMessage, getLogin, getUserId } from "../../redux/selectors/auth-selectors"
+import { ErrorMessage } from "formik"
 
 const Login = (props) => {
 
     const dispatch = useDispatch()
 
     const navigate = useNavigate()
+
+    const isAuth = useSelector(getAuth)
+    const userId = useSelector(getUserId)
+    const errorMessage = useSelector(getErrorMessage)
+
 
     const [localState, setState] = useState({messages: null})
 
@@ -29,13 +37,19 @@ const Login = (props) => {
         reset()
     }
 
+    const clearMessageAboutError = () => {
+        if (errorMessage != null){
+            dispatch(authClear())
+        }
+    }
+
     return (<>
-        {props.state.auth.isAuth
-            ? navigate(`../profile/${props.state.auth.userId}`)
+        {isAuth
+            ? navigate(`../profile/${userId}`)
             : <div><h1>Login</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <label>E-mail:<br />
-                        <input type='email' {...register('email',
+                        <input onClick={clearMessageAboutError} type='email' {...register('email',
                             {
                                 required: 'Поле обязательное к заполнению',
                                 minLength: { value: 5, message: 'Минимум 5 символов' }
@@ -43,7 +57,7 @@ const Login = (props) => {
                         {errors?.email && <div className={classes.error}>{errors?.email?.message || 'Общая ошибка'}</div>}
                     </label><br />
                     <label>password:<br />
-                        <input type='password' {...register('password',
+                        <input onClick={clearMessageAboutError} type='password' {...register('password',
                             {
                                 required: 'Заполните поле пароля',
                                 minLength: { value: 6, message: 'Длина пароля минимум 6 символов' }
@@ -51,7 +65,7 @@ const Login = (props) => {
                         {errors?.password && <div className={classes.error}>{errors?.password?.message}</div>}
                     </label>
                     <br /><input type='checkbox' {...register('rememberMe')} />Remember me?
-                    {props.state.auth.errors != null ? <div>{props.state.auth.errors}</div>: <></>}
+                    {errorMessage != null ? <div>{errorMessage}</div>: <></>}
 
                     <br /><input type='submit' disabled={!isValid} />
                 </form></div>}
