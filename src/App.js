@@ -2,11 +2,11 @@ import React, { lazy, Suspense, useEffect } from 'react';
 import './App.css';
 import Header from './components/Header/Header';
 import Nav from './components/Nav/Nav';
-import Profile, { ProfileWrapper } from './components/Profile/Profile';
+import Profile from './components/Profile/Profile';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import Login from './components/Login/Login';
 import RequireAuth from './components/auth/RequireAuthHOC';
 import { useDispatch, useSelector } from 'react-redux';
@@ -34,8 +34,7 @@ const App = (props) => {
   return (
     <div className='app-wrapper'>
 
-      <BrowserRouter>
-        <>Hi</>
+      <HashRouter>
         <Header store={props.store} state={state} />
         <Nav sidebar={state.sidebar} id={state.auth.userId} />
         <div className='app-wrapper-content'>
@@ -52,7 +51,7 @@ const App = (props) => {
             </Routes>
           </Suspense>
         </div>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   )
 }
