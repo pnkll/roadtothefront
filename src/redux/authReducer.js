@@ -1,13 +1,15 @@
 const SET_USER_DATA = 'SET-USER-DATA'
 const AUTH_ERROR = 'AUTH-ERROR'
 const CLEAR_AUTH_ERROR = 'CLEAR-AUTH-ERROR'
+const SET_CAPTCHA_URL = 'SET-CAPTCHA-URL'
 
 const initialState = {
     userId: null,
     email: null,
     login: null,
     isAuth: false,
-    errors: null
+    errors: null,
+    captchaUrl: null
 }
 
 const authReducer = (state = initialState, action) => {
@@ -28,6 +30,11 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 errors: null
             }
+        case 'SET-CAPTCHA-URL':
+            return {
+                ...state,
+                captchaUrl: action.url
+            }
         default: {
             return state;
 
@@ -35,8 +42,8 @@ const authReducer = (state = initialState, action) => {
     }
 }
 
-export const setUserData = (userId, login, email, isAuth) => {
-    return { type: SET_USER_DATA, data: { userId, login, email, isAuth } }
+export const setUserData = (userId, login, email, isAuth, captchaUrl) => {
+    return { type: SET_USER_DATA, data: { userId, login, email, isAuth, captchaUrl } }
 }
 
 export const authError = (message) => {
@@ -45,6 +52,10 @@ export const authError = (message) => {
 
 export const authClear = () => {
     return { type: CLEAR_AUTH_ERROR }
+}
+
+export const setCaptcha = (url) => {
+    return { type: SET_CAPTCHA_URL, url }
 }
 
 

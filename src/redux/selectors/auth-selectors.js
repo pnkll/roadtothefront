@@ -17,3 +17,7 @@ export const getLogin = (state) => {
 export const getErrorMessage = (state) => {
     return state.auth.errors
 }
+
+export const getCaptchaUrl = (state) => {
+    return state.auth.captchaUrl
+}

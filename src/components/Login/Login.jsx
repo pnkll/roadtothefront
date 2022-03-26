@@ -6,8 +6,7 @@ import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 import classes from './Login.module.css'
 import { authClear } from "../../redux/authReducer"
-import { getAuth, getEmail, getErrorMessage, getLogin, getUserId } from "../../redux/selectors/auth-selectors"
-import { ErrorMessage } from "formik"
+import { getAuth, getCaptchaUrl, getErrorMessage, getUserId } from "../../redux/selectors/auth-selectors"
 
 const Login = (props) => {
 
@@ -18,9 +17,10 @@ const Login = (props) => {
     const isAuth = useSelector(getAuth)
     const userId = useSelector(getUserId)
     const errorMessage = useSelector(getErrorMessage)
+    const captcha = useSelector(getCaptchaUrl)
 
 
-    const [localState, setState] = useState({messages: null})
+    const [localState, setState] = useState({ messages: null })
 
     const {
         register,
@@ -33,12 +33,13 @@ const Login = (props) => {
     } = useForm({ mode: 'onBlur' })
 
     const onSubmit = (data) => {
+        console.log(data)
         dispatch(loginThunk(data))
         reset()
     }
 
     const clearMessageAboutError = () => {
-        if (errorMessage != null){
+        if (errorMessage != null) {
             dispatch(authClear())
         }
     }
@@ -65,7 +66,13 @@ const Login = (props) => {
                         {errors?.password && <div className={classes.error}>{errors?.password?.message}</div>}
                     </label>
                     <br /><input type='checkbox' {...register('rememberMe')} />Remember me?
-                    {errorMessage != null ? <div>{errorMessage}</div>: <></>}
+                    <br />{captcha != null && <><img className={classes.captchaImage} src={captcha} />
+                        <br /><div>Введите символы с картинки</div>
+                        <input type='text' {...register('captchaText',{
+                            required: 'Введите символы с картинки'})} />
+                        {errors?.captchaText && <div className={classes.error}>{errors?.captchaText?.message}</div>}</>}
+
+                    {errorMessage != null ? <div>{errorMessage}</div> : <></>}
 
                     <br /><input type='submit' disabled={!isValid} />
                 </form></div>}

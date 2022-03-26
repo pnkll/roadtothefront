@@ -42,12 +42,16 @@ export const getAuth = () => {
     return instance.get('auth/me')
 }
 
-export const login = (email, password, rememberMe) => {
-    return instance.post('auth/login', {email: email, password: password, rememberMe: rememberMe})
+export const login = (email, password, rememberMe, captcha) => {
+    return instance.post('auth/login', {email: email, password: password, rememberMe: rememberMe, captcha: captcha})
 }
 
 export const logout = () => {
     return instance.delete('auth/login')
+}
+
+export const getCaptcha = () => {
+    return instance.get('security/get-captcha-url')
 }
 
 //Follows
