@@ -40,6 +40,10 @@ export const updatePhoto = (image) => {
     return instance.put('profile/photo', image, { headers: { 'Content-type': 'multipart/form-data' }})
 }
 
+export const updateProfile = (profile) => {
+    return instance.put('profile', profile)
+}
+
 //Auth
 
 export const getAuth = () => {

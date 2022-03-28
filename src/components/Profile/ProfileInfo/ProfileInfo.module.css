@@ -1,3 +1,19 @@
+.formData{
+    background-color: rgba(108, 228, 236, 0.1)
+}
+
 .ava img{
     width: 150px;
+}
+
+.contacts{
+    margin-left: 20px;
+}
+
+.fullname{
+    font-size: 20px;
+}
+
+.mainWrapper{
+    padding-bottom: 20px;
 }

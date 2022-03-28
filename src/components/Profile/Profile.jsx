@@ -38,7 +38,7 @@ function Profile(props) {
     return (
 
       <div className={classes.content}>
-        <ProfileInfo/>
+        <ProfileInfo userId={currentUser}/>
         <MyPosts />
       </div>
     )

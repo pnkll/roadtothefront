@@ -47,19 +47,10 @@ const usersReducer = (state = initialState, action) => {
             return {
                 ...state, users: [...action.users]
             }
-        case 'SHOW-MORE':
-            return {
-                ...state, users: [...state, ...action.users]
-                // ...state, currentPage: action.currentPage
-            }
         case 'SET-PAGE':
             return {
                 ...state, currentPage: action.currentPage
             }
-        // case 'SET-PAGE-COUNT':
-        //     return {
-        //         ...state, pageCount: action.pageCount
-        //     }
         case 'TOOGLE-IS-FETCHING':
             return {
                 ...state, isFetching: action.isFetching
