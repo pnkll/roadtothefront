@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import classes from './Nav.module.css'
-import {NavLink} from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import SidebarFriends from './SidebarFriends/SidebarFriends'
 import { useSelector } from 'react-redux'
 
@@ -9,19 +9,21 @@ const Nav = (props) => {
 
   const isAuth = useSelector(state => state.auth.isAuth)
 
-    return (
-        <nav className={classes.nav}>
-        <div className={classes.item}><NavLink to={`/profile/${props.id}`}>Profile</NavLink></div>
-        <div className={classes.item}><NavLink to='/dialogs'>Messages</NavLink></div>
-        <div className={classes.item}><NavLink to='users'>Users</NavLink></div>
-        <div className={classes.item}><NavLink to='/news'>News</NavLink></div>
-        <div className={classes.item}><NavLink to='/music'>Music</NavLink></div>
-        <div className={classes.item}><NavLink to='/settings'>Settings</NavLink></div>
-        
-        {isAuth && <SidebarFriends users={props.sidebar.users}/>}
-        
-      </nav>
-    )
+  return <div className={classes.mainWrapper}>
+    <nav className={classes.nav}>
+
+      <NavLink className={({isActive})=> `${isActive && classes.active}`} to={`/profile/${props.id}`}>Profile</NavLink>
+      <NavLink className={({isActive})=> `${isActive && classes.active}`} to='/dialogs'>Messages</NavLink>
+      <NavLink className={({isActive})=> `${isActive && classes.active}`} to='users'>Users</NavLink>
+      <NavLink className={({isActive})=> `${isActive && classes.active}`} to='/news'>News</NavLink>
+      <NavLink className={({isActive})=> `${isActive && classes.active}`} to='/music'>Music</NavLink>
+      <NavLink className={({isActive})=> `${isActive && classes.active}`} to='/settings'>Settings</NavLink>
+
+      
+
+    </nav>
+    {isAuth && <SidebarFriends users={props.sidebar.users} />}
+  </div>
 }
 
 export default Nav

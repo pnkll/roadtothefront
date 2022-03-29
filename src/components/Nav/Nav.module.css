@@ -1,23 +1,29 @@
+.mainWrapper{
+  background-color: rgb(139, 175, 175);
+}
+
+.mainWrapper .nav{
+  padding: 10px;
+}
+
 .nav{
     grid-area: n;
-    background-color: rgb(139, 175, 175);
     text-decoration: none;
   }
 
-/* .nav a{
-
-} */
-
-/* a.active{
-  color: black;
-} */
-
-.item a{
+.nav a{
+  display: flex;
+  flex-direction: column;
   text-decoration: none;
   color: white;
 }
 
 .itemActive a{
   text-decoration: none;
+  color: black;
+}
+
+.nav .active{
+  font-weight: bold;
   color: black;
 }

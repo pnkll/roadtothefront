@@ -19,7 +19,7 @@ function ProfileInfo(props) {
         setEditMode(!editMode)
         data.userId = props.userId
         dispatch(updateProfileData(data))
-        
+
         if (data.uploadImage.length != 0) {
             dispatch(updatePhotoThunk(data.uploadImage[0]))
         }
@@ -34,7 +34,7 @@ function ProfileInfo(props) {
             </div>
             {!editMode && <div className={classes.fullname}>{user.fullName}</div>}
 
-            {!editMode && <ProfileData user={user}/>}
+            {!editMode && <ProfileData user={user} />}
 
             {isOwner && editMode &&
                 <ProfileFormData user={user} onSubmit={onSubmit} />
@@ -54,7 +54,7 @@ const ProfileData = (props) => {
         <div>About me: {props.user.aboutMe}</div>
         <div>Ищет работу: {props.user.lookingForAJob ? 'Да' : 'Нет'}</div>
         {props.user.lookingForAJob && <div>Навыки: {props.user.lookingForAJobDescription}</div>}
-        {Object.keys(props.user.contacts).filter( key=> props.user.contacts[key] != '' && props.user.contacts[key] != null).map(key => <div className={classes.contacts}><Contact key={key} contactValue={props.user.contacts[key]} contactTitle={key} /></div>)}
+        {Object.keys(props.user.contacts).filter(key => props.user.contacts[key] != '' && props.user.contacts[key] != null).map(key => <div className={classes.contacts}><Contact key={key} contactValue={props.user.contacts[key]} contactTitle={key} /></div>)}
     </div>
 }
 

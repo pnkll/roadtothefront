@@ -4,6 +4,7 @@ import Paginator from "../common/Paginator/Paginator";
 import { getUsersThunk } from "../../redux/async/usersThunk";
 import { getCurrentPage, getFetching, getTotalUsersCount, getPageSize, getUsers } from "../../redux/selectors/users-selectors";
 import User from './User'
+import classes from './Users.module.css'
 import { Outlet } from "react-router-dom";
 
 let Users = (props) => {
@@ -23,7 +24,7 @@ let Users = (props) => {
 
     return (
 
-        <div>Users {
+        <div className={classes.mainWrapper}>Users {
             users.map(u => <User key={u.id} id={u.id} photos={u.photos} followed={u.followed} status={u.status} name={u.name} />
             )
 

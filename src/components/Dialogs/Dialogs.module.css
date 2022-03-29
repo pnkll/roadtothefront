@@ -2,6 +2,7 @@
 display: grid;
 /* grid-template-areas: "d m"; */
 grid-template-columns: 200px auto;
+padding: 10px;
 }
 
 .myMessage{
