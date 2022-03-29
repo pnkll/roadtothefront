@@ -4,6 +4,7 @@ import { authError, setCaptcha, setUserData } from "../authReducer"
 export const checkAuth = () => (dispatch) => {
   return getAuth()
     .then(response => {
+      console.log(response)
       const login = response.data.data.login
       const email = response.data.data.email
       const userId = response.data.data.id

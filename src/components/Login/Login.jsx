@@ -33,7 +33,6 @@ const Login = (props) => {
     } = useForm({ mode: 'onBlur' })
 
     const onSubmit = (data) => {
-        console.log(data)
         dispatch(loginThunk(data))
         reset()
     }

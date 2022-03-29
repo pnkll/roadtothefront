@@ -1,6 +1,6 @@
-.mainWrapper{
+/* .mainWrapper{
   background-color: rgb(139, 175, 175);
-}
+} */
 
 .mainWrapper .nav{
   padding: 10px;
@@ -16,6 +16,7 @@
   flex-direction: column;
   text-decoration: none;
   color: white;
+  text-shadow: 1px 1px 1px lightslategray;
 }
 
 .itemActive a{

@@ -28,23 +28,26 @@ function ProfileInfo(props) {
 
     return (
         <div className={classes.mainWrapper}>
-            <div className={classes.ava}><img src={user.photos.large != null
-                ? user.photos.large
-                : 'https://cdn1.ozone.ru/s3/multimedia-a/c1200/6064056070.jpg'} />
+            <div className={classes.container}>
+                <div className={classes.ava}><img src={user.photos.large != null
+                    ? user.photos.large
+                    : 'https://cdn1.ozone.ru/s3/multimedia-a/c1200/6064056070.jpg'} />
+                    <div className={classes.status}>Status: <div className={classes.s}><ProfileStatus /></div></div>
+                </div>
+
+                <div className={classes.info}>
+                    {!editMode && <div className={classes.fullname}>{user.fullName}</div>}
+
+                    {!editMode && <ProfileData user={user} />}
+
+                    {isOwner && editMode &&
+                        <ProfileFormData user={user} onSubmit={onSubmit} />
+                    }
+
+                </div>
             </div>
-            {!editMode && <div className={classes.fullname}>{user.fullName}</div>}
 
-            {!editMode && <ProfileData user={user} />}
-
-            {isOwner && editMode &&
-                <ProfileFormData user={user} onSubmit={onSubmit} />
-            }
             {isOwner && !editMode && <button onClick={() => { setEditMode(!editMode) }}>Редактировать страницу</button>}
-
-
-
-            <div>Status: <ProfileStatus /></div>
-
         </div>
     )
 }

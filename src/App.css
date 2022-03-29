@@ -1,4 +1,4 @@
-.app-wrapper{
+/* .app-wrapper{
   display: grid;
   width: 1200px;
   margin: 0 auto;
@@ -16,4 +16,38 @@
     grid-area: c;
     background-color: coral;
     padding: 5px;
+} */
+
+.app{
+  display: flex;
+  justify-content: center;
+}
+
+.app-wrapper{
+  display: flex;
+  flex-direction: column;
+  max-width: 705px;
+}
+
+.header{
+  justify-content: center;
+  background-color: wheat;
+}
+
+.container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.navbar{
+  background-color: wheat;
+  border-right: black solid 2px;
+  max-width: 161.98px;
+  min-width: 156.89px;
+}
+
+.content{
+  background-color: wheat;
+  min-width: 548.11px;
 }

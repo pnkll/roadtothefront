@@ -31,7 +31,7 @@ function Header(props) {
   return (
 
     <header className={classes.header}>
-      <img alt='' src='https://yt3.ggpht.com/a/AATXAJyu6W5PFO1OG71jmGRdWYRSwsLAtL7GnC0t1hTGOg=s900-c-k-c0x00ffffff-no-rj' />
+      <img alt='' src='https://web-creator.ru/uploads/Page/33/react.svg' />
       <div className={classes.loginBlock}>{props.state.auth.isAuth != true
         ? <>
           <NavLink to='/login'>Login</NavLink><br />

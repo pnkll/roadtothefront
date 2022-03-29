@@ -9,15 +9,17 @@ const Nav = (props) => {
 
   const isAuth = useSelector(state => state.auth.isAuth)
 
+  const setActive = ({isActive}) => isActive && classes.active;
+
   return <div className={classes.mainWrapper}>
     <nav className={classes.nav}>
 
-      <NavLink className={({isActive})=> `${isActive && classes.active}`} to={`/profile/${props.id}`}>Profile</NavLink>
-      <NavLink className={({isActive})=> `${isActive && classes.active}`} to='/dialogs'>Messages</NavLink>
-      <NavLink className={({isActive})=> `${isActive && classes.active}`} to='users'>Users</NavLink>
-      <NavLink className={({isActive})=> `${isActive && classes.active}`} to='/news'>News</NavLink>
-      <NavLink className={({isActive})=> `${isActive && classes.active}`} to='/music'>Music</NavLink>
-      <NavLink className={({isActive})=> `${isActive && classes.active}`} to='/settings'>Settings</NavLink>
+      <NavLink className={setActive} to={`profile/${props.id}`}>Profile</NavLink>
+      <NavLink className={setActive} to='dialogs'>Messages</NavLink>
+      <NavLink className={setActive} to='users'>Users</NavLink>
+      <NavLink className={setActive} to='news'>News</NavLink>
+      <NavLink className={setActive} to='music'>Music</NavLink>
+      <NavLink className={setActive} to='settings'>Settings</NavLink>
 
       
 

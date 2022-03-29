@@ -3,6 +3,7 @@ import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { updateStatusThunk } from "../../../redux/async/profileThunk"
 import { getStatus } from "../../../redux/selectors/profile-selectors"
+import classes from './ProfileInfo.module.css'
 
 
 //Грубейший костыль с VALUE: 0 на 33 строчке(подумать над тем как исправить)
@@ -29,13 +30,13 @@ const ProfileStatus = (props) => {
         }
     }
 
-    return (<>
+    return (<div className={classes.status}>
 
         {
             localState.editMode ? <input autoFocus={true} onBlur={disabledMode} />
                 : <span onDoubleClick={activatedMode}>{status != null || localState.value != 0 ? status : 'Here need a status'}</span>
         }
-    </>
+    </div>
     )
 }
 

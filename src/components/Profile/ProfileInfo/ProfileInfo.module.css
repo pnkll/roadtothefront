@@ -4,6 +4,7 @@
 
 .ava img{
     width: 150px;
+    display: block;
 }
 
 .contacts{
@@ -16,4 +17,17 @@
 
 .mainWrapper{
     padding-bottom: 20px;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+}
+
+.info{
+    margin-left: 10px;
+}
+
+.status{
+    max-width: 120px;
 }
