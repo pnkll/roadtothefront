@@ -1,22 +1,52 @@
 .dialogs{
 display: grid;
 /* grid-template-areas: "d m"; */
-grid-template-columns: 200px auto;
+grid-template-columns: 50px auto;
 padding: 10px;
 }
 
 .myMessage{
-    display: block;
-    margin: 0 0 0 auto;
-    max-width: 500px;
+    
 
 }
 
 .message{
-    color: orange;
 }
 
+.me img{
+    width: 30px;
+}
 
+.notMe img{
+    width: 30px;
+}
+
+.me{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.me .text{
+    background-color: rgba(44, 233, 247, 0.479);
+    border-radius: 10px;
+    padding: 10px;
+    max-width: 250px;
+}
+
+.notMe .text{
+    background-color: rgba(1, 13, 14, 0.479);
+    border-radius: 10px;
+    padding: 10px;
+    max-width: 250px;
+    color: white
+}
+
+.me .in{
+}
+
+.notMe{
+    display: block;
+}
 /* .dialogsItems .active{
 
 } */
@@ -24,11 +54,23 @@ padding: 10px;
 
 
 .messages{
-border: 1px solid black;
 padding: 20px;
-background-color:cornflowerblue;
 }
 
 /* .messages .message{
 
 } */
+
+.textArea{
+    width: 97%;
+    border-radius: 10px;
+    border: 0px solid black;
+    padding: 10px;
+    margin-top: 10px;
+    outline: none;
+}
+
+.time{
+    font-size: 11px;
+    text-align: right;
+}

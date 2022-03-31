@@ -10,3 +10,23 @@
     color: black;
     text-decoration: none;
   }
+  
+.logoutBut{
+  display: inline-block;
+}
+
+.photo{
+  display: inline-block;
+}
+
+.photo img {
+    width: 45px;
+  }
+
+  .mainCont{
+    display: flex;
+  }
+  .cont{
+    display: flex;
+    flex-direction: column;
+  }

@@ -2,6 +2,7 @@ const SET_USER_DATA = 'SET-USER-DATA'
 const AUTH_ERROR = 'AUTH-ERROR'
 const CLEAR_AUTH_ERROR = 'CLEAR-AUTH-ERROR'
 const SET_CAPTCHA_URL = 'SET-CAPTCHA-URL'
+const SAVE_PHOTO = 'SAVE-PHOTO'
 
 const initialState = {
     userId: null,
@@ -9,7 +10,8 @@ const initialState = {
     login: null,
     isAuth: false,
     errors: null,
-    captchaUrl: null
+    captchaUrl: null,
+    photoURL: null
 }
 
 const authReducer = (state = initialState, action) => {
@@ -42,8 +44,8 @@ const authReducer = (state = initialState, action) => {
     }
 }
 
-export const setUserData = (userId, login, email, isAuth, captchaUrl) => {
-    return { type: SET_USER_DATA, data: { userId, login, email, isAuth, captchaUrl } }
+export const setUserData = (userId, login, email, isAuth, captchaUrl, photoURL) => {
+    return { type: SET_USER_DATA, data: { userId, login, email, isAuth, captchaUrl, photoURL } }
 }
 
 export const authError = (message) => {
@@ -57,10 +59,5 @@ export const authClear = () => {
 export const setCaptcha = (url) => {
     return { type: SET_CAPTCHA_URL, url }
 }
-
-
-// export const loginUser = () => {
-//     return { type: LOGIN_USER}
-// }
 
 export default authReducer

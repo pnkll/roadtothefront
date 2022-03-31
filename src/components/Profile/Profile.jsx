@@ -9,7 +9,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import Preloader from '../common/Preloader/Preloader'
 import { getProfile, getStatusThunk } from '../../redux/async/profileThunk'
 import { getStatus, getUser } from '../../redux/selectors/profile-selectors'
-import { getUserId } from '../../redux/selectors/auth-selectors'
+import { getPhoto, getUserId } from '../../redux/selectors/auth-selectors'
+import { savePhoto } from '../../redux/authReducer'
 
 
 
@@ -20,7 +21,7 @@ function Profile(props) {
   const user = useSelector(getUser)
   const status = useSelector(getStatus)
   const authId = useSelector(getUserId)
-
+  const photo = useSelector(getPhoto)
 
   useEffect(() => {
     dispatch(getProfile(currentUser))

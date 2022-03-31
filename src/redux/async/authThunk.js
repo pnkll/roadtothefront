@@ -1,18 +1,19 @@
-import { getAuth, getCaptcha, login, logout } from "../../components/api/api"
+import { getAuth, getCaptcha, login, logout, setProfile } from "../../components/api/api"
 import { authError, setCaptcha, setUserData } from "../authReducer"
 
-export const checkAuth = () => (dispatch) => {
-  return getAuth()
-    .then(response => {
-      console.log(response)
-      const login = response.data.data.login
-      const email = response.data.data.email
-      const userId = response.data.data.id
-      const result = response.data.resultCode
-      if (result === 0) {
-        dispatch(setUserData(userId, login, email, true, null))
-      }
-    })
+export const checkAuth = () => async (dispatch) => {
+  const response = await getAuth()
+  const login = response.data.data.login
+  const email = response.data.data.email
+  const userId = response.data.data.id
+  const result = response.data.resultCode
+  if (result === 0) {
+    const profile = await setProfile(userId)
+    const photo = profile.data.photos.large != null ? profile.data.photos.large : 'https://cdn1.ozone.ru/s3/multimedia-a/c1200/6064056070.jpg'
+    dispatch(setUserData(userId, login, email, true, null, photo))
+  }
+
+
 }
 
 export const loginThunk = (values) => (dispatch) => {
@@ -39,7 +40,7 @@ export const logoutThunk = () => (dispatch) => {
   logout()
     .then(response => {
       if (response.data.resultCode === 0) {
-        dispatch(setUserData(null, null, null, false))
+        dispatch(setUserData(null, null, null, false, null, null))
       }
     }
     )

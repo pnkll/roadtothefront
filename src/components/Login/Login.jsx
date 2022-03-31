@@ -60,7 +60,7 @@ const Login = (props) => {
                         <input onClick={clearMessageAboutError} type='password' {...register('password',
                             {
                                 required: 'Заполните поле пароля',
-                                minLength: { value: 6, message: 'Длина пароля минимум 6 символов' }
+                                minLength: { value: 4, message: 'Длина пароля минимум 4 символов' }
                             })} />
                         {errors?.password && <div className={classes.error}>{errors?.password?.message}</div>}
                     </label>

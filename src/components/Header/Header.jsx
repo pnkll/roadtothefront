@@ -1,43 +1,48 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import classes from './Header.module.css'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logoutThunk } from '../../redux/async/authThunk'
+import { getAuth, getLogin, getPhoto, getUserId } from "../../redux/selectors/auth-selectors";
 
 
-function Header(props) {
+const Header = (props) => {
+
+  const isAuth = useSelector(getAuth)
+  const userId = useSelector(getUserId)
+  const login = useSelector(getLogin)
+  const photo = useSelector(getPhoto)
 
   const moveToLoginPage = () => {
     navigate('/login')
   }
 
   useEffect(() => {
-    if(!props.state.auth.isAuth){
-    moveToLoginPage()
+    if (!isAuth) {
+      moveToLoginPage()
     }
-    
-  }, [props.state.auth.isAuth])
+
+  }, [isAuth])
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
 
   const logout = () => {
     dispatch(logoutThunk())
   }
 
-  const photo = props.state.usersPage
-
-
   return (
 
     <header className={classes.header}>
       <img alt='' src='https://web-creator.ru/uploads/Page/33/react.svg' />
-      <div className={classes.loginBlock}>{props.state.auth.isAuth != true
+      <div className={classes.loginBlock}>{isAuth != true
         ? <>
           <NavLink to='/login'>Login</NavLink><br />
           <NavLink to='/sign'>Sign in</NavLink></>
-        : <><NavLink to={`/profile/${props.state.auth.userId}`}>{props.state.auth.login}</NavLink><br />
-          <button onClick={logout}>Log out</button></>}</div>
+        : <><div className={classes.mainCont}><div className={classes.photo}><img src={photo} /></div><div className={classes.cont}>
+          <div className={classes.login}><NavLink to={`/profile/${userId}`}>{login}</NavLink></div>
+          <div className={classes.logoutBut}><button onClick={logout}>Log out</button></div></div></div></>}</div>
     </header>
   )
 }

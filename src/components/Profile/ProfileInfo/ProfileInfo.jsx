@@ -57,7 +57,7 @@ const ProfileData = (props) => {
         <div>About me: {props.user.aboutMe}</div>
         <div>Ищет работу: {props.user.lookingForAJob ? 'Да' : 'Нет'}</div>
         {props.user.lookingForAJob && <div>Навыки: {props.user.lookingForAJobDescription}</div>}
-        {Object.keys(props.user.contacts).filter(key => props.user.contacts[key] != '' && props.user.contacts[key] != null).map(key => <div className={classes.contacts}><Contact key={key} contactValue={props.user.contacts[key]} contactTitle={key} /></div>)}
+        {Object.keys(props.user.contacts).filter(key => props.user.contacts[key] != '' && props.user.contacts[key] != null).map(key => <div className={classes.contacts} key={key}><Contact  contactValue={props.user.contacts[key]} contactTitle={key} /></div>)}
     </div>
 }
 

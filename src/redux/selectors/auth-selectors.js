@@ -21,3 +21,7 @@ export const getErrorMessage = (state) => {
 export const getCaptchaUrl = (state) => {
     return state.auth.captchaUrl
 }
+
+export const getPhoto = (state) => {
+    return state.auth.photoURL
+}
