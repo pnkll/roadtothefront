@@ -1,12 +1,10 @@
 .dialogsItems{
-    /* grid-area: d; */
     padding-left: 20px;
     }
     
 .dialog a{
     display: block;
         text-decoration: none;
-        border: 1px solid black;
         }
 
 .dialog img{

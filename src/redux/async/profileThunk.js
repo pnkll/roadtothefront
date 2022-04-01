@@ -1,11 +1,9 @@
-import { setUser, getStatus, updateAvatar, updateProfileAC } from '../profileReducer'
+import { setUser, getStatus, updateAvatar, updateProfileAC } from '../reducers/profileReducer'
 import { setProfile, updatePhoto, updateProfile, updateStatusAPI } from '../../components/api/api'
 import { getStatusAPI } from '../../components/api/api'
 
 
 export const getProfile = (currentUser) => (dispatch) => {
-  console.log('hee')
-
   setProfile(currentUser).then(response => {
     dispatch(setUser(response.data))
   })

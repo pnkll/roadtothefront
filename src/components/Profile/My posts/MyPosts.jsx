@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { addPost } from '../../../redux/profileReducer';
+import { addPost } from '../../../redux/reducers/profileReducer';
 import { getPosts } from '../../../redux/selectors/profile-selectors';
 import classes from './MyPosts.module.css'
 import Post from './Post/Post';

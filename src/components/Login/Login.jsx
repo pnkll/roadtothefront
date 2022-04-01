@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 import classes from './Login.module.css'
-import { authClear } from "../../redux/authReducer"
+import { authClear } from "../../redux/reducers/authReducer"
 import { getAuth, getCaptchaUrl, getErrorMessage, getUserId } from "../../redux/selectors/auth-selectors"
 
 const Login = (props) => {

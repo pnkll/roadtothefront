@@ -1,5 +1,5 @@
 import { getAuth, getCaptcha, login, logout, setProfile } from "../../components/api/api"
-import { authError, setCaptcha, setUserData } from "../authReducer"
+import { authError, setCaptcha, setUserData } from "../reducers/authReducer"
 
 export const checkAuth = () => async (dispatch) => {
   const response = await getAuth()

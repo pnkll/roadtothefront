@@ -3,18 +3,19 @@ import classes from './Nav.module.css'
 import { NavLink } from 'react-router-dom'
 import SidebarFriends from './SidebarFriends/SidebarFriends'
 import { useSelector } from 'react-redux'
+import { getAuth, getUserId } from '../../redux/selectors/auth-selectors'
 
 const Nav = (props) => {
 
+  const isAuth = useSelector(getAuth)
+  const userId = useSelector(getUserId)
 
-  const isAuth = useSelector(state => state.auth.isAuth)
-
-  const setActive = ({isActive}) => isActive && classes.active;
+  const setActive = ({isActive}) => isActive ? classes.active : classes.notActive;
 
   return <div className={classes.mainWrapper}>
     <nav className={classes.nav}>
 
-      <NavLink className={setActive} to={`profile/${props.id}`}>Profile</NavLink>
+      <NavLink className={setActive} to={`profile/${userId}`}>Profile</NavLink>
       <NavLink className={setActive} to='dialogs'>Messages</NavLink>
       <NavLink className={setActive} to='users'>Users</NavLink>
       <NavLink className={setActive} to='news'>News</NavLink>
@@ -24,7 +25,7 @@ const Nav = (props) => {
       
 
     </nav>
-    {isAuth && <SidebarFriends users={props.sidebar.users} />}
+    {isAuth && <SidebarFriends />}
   </div>
 }
 

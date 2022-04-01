@@ -1,16 +1,7 @@
 .dialogs{
 display: grid;
-/* grid-template-areas: "d m"; */
 grid-template-columns: 50px auto;
 padding: 10px;
-}
-
-.myMessage{
-    
-
-}
-
-.message{
 }
 
 .me img{
@@ -47,19 +38,10 @@ padding: 10px;
 .notMe{
     display: block;
 }
-/* .dialogsItems .active{
-
-} */
-
-
 
 .messages{
 padding: 20px;
 }
-
-/* .messages .message{
-
-} */
 
 .textArea{
     width: 97%;

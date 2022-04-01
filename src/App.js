@@ -37,22 +37,21 @@ const App = (props) => {
 
         <div className='app-wrapper'>
           <div className='header'>
-            <Header store={props.store} state={state} />
+            <Header />
           </div>
           <div className='container'>
             <div className='navbar'>
-              <Nav sidebar={state.sidebar} id={state.auth.userId} /></div>
-            {/* <div className='app-wrapper-content'> */}
+              <Nav /></div>
             <div className='content'>
               <Suspense fallback={<Preloader />}>
                 <Routes>
-                  <Route path='profile/:id' element={<RequireAuth children={<Profile store={props.store} profilePage={state.profilePage} />} />} />
+                  <Route path='profile/:id' element={<RequireAuth children={<Profile />} />} />
                   <Route path='news' element={<News />} />
                   <Route path='music' element={<Music />} />
                   <Route path='settings' element={<Settings />} />
                   <Route path='login' element={<Login />} />
                   <Route path='' element={<Login />} />
-                  <Route path='dialogs/*' element={<RequireAuth children={<Dialogs store={props.store} state={state.dialogsPage} />} />} />
+                  <Route path='dialogs/*' element={<RequireAuth children={<Dialogs />} />} />
                   <Route path='users' element={<RequireAuth children={<Users />} />} />
                   <Route path='follows' element={<RequireAuth children={<Follows />} />} />
                 </Routes>

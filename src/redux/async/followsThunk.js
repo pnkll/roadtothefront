@@ -1,5 +1,5 @@
 import { setFollowedUsers } from "../../components/api/api"
-import { setFollows } from "../followsReducer"
+import { setFollows } from "../reducers/followsReducer"
 
 export const getfollowsThunk = (totalCount) => async (dispatch) =>{
     const data = await setFollowedUsers(totalCount)

@@ -1,5 +1,5 @@
 import { checkAuth } from "./authThunk"
-import { initializeSuccess } from "../appReducer"
+import { initializeSuccess } from "../reducers/appReducer"
 
 
 export const initializeApp = () => (dispatch) => {

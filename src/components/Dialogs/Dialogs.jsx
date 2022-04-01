@@ -2,24 +2,24 @@ import classes from './Dialogs.module.css'
 import Message from './Message/Message'
 import DialogItem from './DialogItem/DialogItem';
 import React, { useState } from 'react';
-import { addMessageActionCreator } from '../../redux/dialogsReducer'
+import { addMessageActionCreator } from '../../redux/reducers/dialogsReducer'
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { getLogin, getPhoto } from '../../redux/selectors/auth-selectors'
+import { getDialogs, getMessages } from '../../redux/selectors/dialogs-selectors';
 
 
 
 const Dialogs = (props) => {
 
-  const avatar = useSelector(getPhoto)
-  const login = useSelector(getLogin)
-
   const dispatch = useDispatch()
 
-  const { register, handleSubmit, reset } = useForm()
+  const avatar = useSelector(getPhoto)
+  const login = useSelector(getLogin)
+  const messages = useSelector(getMessages)
+  const dialogs = useSelector(getDialogs)
 
-  const messages = useSelector(state => state.dialogsPage.messages)
-  const dialogs = useSelector(state => state.dialogsPage.dialogs)
+  const { register, handleSubmit, reset } = useForm()
 
   const date = new Date()
   const getTime = () => {
@@ -27,7 +27,6 @@ const Dialogs = (props) => {
     const minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
     return hours + ':' + minutes
   }
-
 
   let onAddMessage = (value) => {
     const time = getTime()

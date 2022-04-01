@@ -2,21 +2,27 @@
     padding: 10px;
 }
 
+.content{
+    display: flex;
+    justify-content: center;
+}
+
 .users{
     display: flex;
     flex-direction: row;
 }
-/* 
+
 .user{
-} */
+    padding-bottom: 10px;
+}
 
 .user img{
     max-width: 70px;
     max-height: 70px;
 }
 .info{
-    border: 1px solid black;
-    border-right: 0px;
+    /* border: 1px solid black;
+    border-right: 0px; */
     display: flex;
     flex-direction: row;
     padding: 10px;
@@ -32,4 +38,9 @@
 
 .followed{
     width: 70px;
+}
+
+.pages{
+    display: flex;
+    justify-content: center;
 }

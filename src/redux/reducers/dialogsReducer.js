@@ -15,7 +15,6 @@ const initialState = {
     { key: 4, userid: 'me', image: null, message: 'Lorem ipsumnisi, ipsa architecto id exercitationem.', time: '14:00' },
     { key: 5, image: 'https://cdn1.ozone.ru/s3/multimedia-a/c1200/6064056070.jpg', message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem laboriosam dolore velit rerum soluta deserunt nisi.', time: '14:00' }
   ],
-  // newMessageValue: ''
 }
 
 const dialogsReducer = (state = initialState, action) => {

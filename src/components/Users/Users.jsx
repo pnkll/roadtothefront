@@ -24,17 +24,18 @@ let Users = (props) => {
 
     return (
 
-        <div className={classes.mainWrapper}>Users {
+        <div className={classes.mainWrapper}>Users 
+        <div className={classes.content}><div>{
             users.map(u => <User key={u.id} id={u.id} photos={u.photos} followed={u.followed} status={u.status} name={u.name} />
             )
 
-        }
-            <Paginator
+        }</div></div>
+            <div className={classes.pages}><Paginator
                 isFetching={isFetching}
                 pageSize={pageSize}
                 totalItemsCount={totalUsersCount}
                 currentPage={currentPage}
-                portionSize={5} />
+                portionSize={5} /></div>
         </div>
     )
 }

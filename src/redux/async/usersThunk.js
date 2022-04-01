@@ -1,5 +1,5 @@
 import { getUsers, sub, unSub } from "../../components/api/api";
-import { toogleIsFetching, setUsers, setPage, follow, unfollow, toogleOfButton } from "../usersReducer";
+import { toogleIsFetching, setUsers, setPage, follow, unfollow, toogleOfButton } from "../reducers/usersReducer";
 
 
 
